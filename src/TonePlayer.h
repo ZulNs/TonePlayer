@@ -70,7 +70,7 @@ private:
   
   uint16_t getDuration(void);
   void soundSpeaker(uint16_t freq, uint16_t duration);
-  void muteSpeaker(uint16_t duration);
+  void muteSpeaker(uint16_t duration = 0);
 
   bool     isPlaying, isBuzzing;
   uint8_t  speakerPin, stackPointer, toneCode;
