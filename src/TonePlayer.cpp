@@ -22,7 +22,9 @@ TonePlayer::TonePlayer(uint8_t speaker_pin) {
 }
 
 void TonePlayer::setSong(const uint8_t* ptr_song_buffer, uint16_t tone_size) {
-  stop();
+  if (isPlaying) {
+    stop();
+  }
   songBuffer = ptr_song_buffer;
   toneSize = tone_size;
 }
@@ -47,7 +49,9 @@ void TonePlayer::play(uint16_t start_from_address) {
 }
 
 void TonePlayer::pause() {
-  muteSpeaker(0);
+  if (isBuzzing) {
+    muteSpeaker();
+  }
   isPlaying = false;
 }
 
@@ -58,10 +62,10 @@ void TonePlayer:: cont() {
 }
 
 void TonePlayer::stop() {
-  muteSpeaker(0);
+  if (isBuzzing) {
+    muteSpeaker();
+  }
   isPlaying = false;
-  tonePointer = 0;
-  stackPointer = 0;
 }
 
 void TonePlayer::loop() {
@@ -83,7 +87,6 @@ void TonePlayer::loop() {
           }
           else {
             isPlaying = false;
-            tonePointer = 0;
             if (onEndOfSongCallback) {
               onEndOfSongCallback();
             }
@@ -212,7 +215,9 @@ void TonePlayer::loop() {
       case LOOP:
         if (!isBuzzing || eachRestDuration == 0) {
           if (--repetition == 0) {
-            muteSpeaker(0);
+            if (isBuzzing) {
+              muteSpeaker();
+            }
             toneCode = FETCH;
           }
           else {
@@ -226,7 +231,9 @@ void TonePlayer::loop() {
       case SEQUENCE_TONE:
         if (!isBuzzing || eachRestDuration == 0) {
           if (--stepCtr == 0) {
-            muteSpeaker(0);
+            if (isBuzzing) {
+              muteSpeaker();
+            }
             toneCode = FETCH;
             break;
           }
