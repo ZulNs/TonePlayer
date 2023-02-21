@@ -40,10 +40,10 @@ void setup() {
   highestFreq = top.getFreq(HIGHEST_TONE);
   // Both LOWEST_TONE & HIGHEST_TONE are defined in file "song.h"
   freqRange = highestFreq - lowestFreq;
-  top.setOnToneCallback(onTone);    // The onTone() function will be called everytime a tone begins to sound.
-  top.setOnMuteCallback(onMute);    // While the onMute() function wiil be called when the buzzer begins to be muted. 
-  top.setSong(SONG, sizeof(SONG));  // Set the song data, note: it must be in PROGMEM area.
-                                   // Song buffer SONG is declared in file "song.h"
+  top.setOnToneCallback(onTone);         // The onTone() function will be called everytime a tone begins to sound.
+  top.setOnMuteCallback(onMute);         // While the onMute() function wiil be called when the buzzer begins to be muted. 
+  top.setSong(SONG, sizeof(SONG), BPM);  // Set the song data, note: it must be in PROGMEM area.
+                                         // Song buffer SONG is declared in file "song.h"
   top.play();  // Begins playback a song.
 }
 
