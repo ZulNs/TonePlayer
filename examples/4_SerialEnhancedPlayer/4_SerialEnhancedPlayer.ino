@@ -27,15 +27,14 @@
  * Playlist:
  * Song  1: Pirates of The Carribean by Alan Walker
  * Song  2: Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri
- * Song  3: Hark The Herald Angels Sing
- * Song  4: Phantom by Dimitri Vangelis & Wyman
- * Song  5: Monody (Radio Edit) by TheFatRat ft. Laura Brehm
- * Song  6: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
- * Song  7: Hello World by Alan Walker ft. Torine
- * Song  8: Catch Me If You Can by Alan Walker ft. Sorana
- * Song  9: Lovesick by Alan Walker ft. Sophie Simmons
- * Song 10: Unity by Alan Walker ft. The Walkers
- * Song 11: The Spectre by Alan Walker
+ * Song  3: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
+ * Song  4: Hello World by Alan Walker ft. Torine
+ * Song  5: Catch Me If You Can by Alan Walker ft. Sorana
+ * Song  6: Lovesick by Alan Walker ft. Sophie Simmons
+ * Song  7: Unity by Alan Walker ft. The Walkers
+ * Song  8: The Spectre by Alan Walker
+ * Song  9: Alone by Alan Walker ft. Tove Stryrke
+ * Song 10: Creatures by Hot Shade ft. Nomi Bontegard
  * 
  * By ZulNs, @Gorontalo, January 2023
 */
@@ -83,7 +82,8 @@ TonePlayer top;  // If omitted, pin 13 is the default pin the passive buzzer con
 //TonePlayer top(13);  // This line has same effect with above line.
 
 uint16_t lowestFreq, highestFreq, freqRange;
-uint16_t currentSpeed = 1000;
+uint16_t tempo;
+float currentSpeed = 1.0;
 int8_t currentSong, toneShift;
 bool isPlaying, isPaused, isContinousMode, isRepeatMode, isDisplayIndicator;
 
@@ -189,7 +189,8 @@ void onEndOfSong() {
 void playSong() {
   const uint8_t * songBuf = (const uint8_t *)pgm_read_word_near(SONG_BUFFER + currentSong);
   uint16_t noteSz = pgm_read_word_near(SONG_SIZE + currentSong);
-  top.setSong(songBuf, noteSz);
+  tempo = pgm_read_word_near(SONG_TEMPO + currentSong);
+  top.setSong(songBuf, noteSz, tempo * currentSpeed);
   top.setRestFactor(20);  // Set to default rest factor
   top.play();
   initIndicator();
@@ -249,16 +250,16 @@ void checkSerialInput() {
         playSong();
         break;
       case '+':
-        if (currentSpeed > 500) {
-          currentSpeed -= (currentSpeed >= 1000) ? 100 : 50;
-          top.setTempo(currentSpeed);
+        if (currentSpeed < 2.0) {
+          currentSpeed += (currentSpeed >= 1.0) ? 0.1 : 0.05;
+          top.setTempo(tempo * currentSpeed);
           printSpeed();
         }
         break;
       case '-':
-        if (currentSpeed < 2000) {
-          currentSpeed += (currentSpeed >= 1000) ? 100 : 50;
-          top.setTempo(currentSpeed);
+        if (currentSpeed > 0.5) {
+          currentSpeed -= (currentSpeed > 1.0) ? 0.1 : 0.05;
+          top.setTempo(tempo * currentSpeed);
           printSpeed();
         }
         break;
@@ -354,7 +355,7 @@ void printPauseCont() {
 
 void printSpeed() {
   Serial.print(F("Playback speed: "));
-  Serial.print(1000.0 / currentSpeed);
+  Serial.print(currentSpeed);
   Serial.println(F("x"));
 }
 
