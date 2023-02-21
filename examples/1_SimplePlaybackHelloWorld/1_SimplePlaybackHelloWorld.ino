@@ -16,8 +16,8 @@ TonePlayer top;  // If omitted, pin 13 is the default pin the passive buzzer con
 //TonePlayer top(13);  // This line has same effect with above line.
 
 void setup() {
-  top.setSong(SONG, sizeof(SONG));  // Set the song data, note: it must be in PROGMEM area.
-                                   // Song buffer SONG is declared in file "song.h"
+  top.setSong(SONG, sizeof(SONG), BPM);  // Set the song data, note: it must be in PROGMEM area.
+                                         // Song buffer SONG is declared in file "song.h"
   top.play();  // Begins playback a song.
 }
 
