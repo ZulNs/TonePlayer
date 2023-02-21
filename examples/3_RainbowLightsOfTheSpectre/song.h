@@ -5,91 +5,94 @@
 
 
 // Song title: The Spectre by Alan Walker
+
+#define BPM 128
+
 const PROGMEM uint8_t SONG[] = {
-  NE6,   2, NGIS6, 2, NE7,   1, NB6,   2, NCIS7, 2, NGIS6, 1,
-  NE6,   2, NFIS6, 2, NDIS6, 1, NCIS6, 2, NE6,   2, NCIS6, 1,
+  NE5, -1, NGIS5, -1, NE6,   20, NB5,   -1, NCIS6, -1, NGIS5, 20,
+  NE5, -1, NFIS5, -1, NDIS5, 20, NCIS5, -1, NE5,   -1, NCIS5, 20,
   
   // Address 24
-  NGIS6, 4, NGIS6, 4, NB6, 4, NCIS7, 0, 3, 4, NCIS7, 2, NB6, 2, NGIS6, 0, 3, 4, NFIS6, 0, 3, 4,
-  NDIS6, 2, NDIS6, 4, NCIS6, 2, NB5, 2, NGIS5, 0, 3, 4,
-  REPEAT, 24, 0, 22, 0,
-  NCIS6, 4, NDIS6, 2, NDIS6, 4, NFIS6, 2, NDIS6, 4, NE6, 0, 3, 4,
+  NGIS5, -2, NGIS5, -2, NB5,   -2, NCIS6, 15, NCIS6, -1, NB5, -1, NGIS5, 15, NFIS5, 15,
+  NDIS5, -1, NDIS5, -2, NCIS5, -1, NB4,   -1, NGIS4, 15,
+  REPEAT, 24, 0, 16, 0,
+  NCIS5, -2, NDIS5, -1, NDIS5, -2, NFIS5, -1, NDIS5, -2, NE5, 15,
   
-  // Address 77
-  NGIS6, 4, NE7, 4, NDIS7, 4, NCIS7, 4, NB6, 4,
-  NCIS7, 1, NB6, 0, 3, 4, NGIS6, 1,
-  NGIS6, 4, NFIS6, 2, NFIS6, 4, NA6,   2, NFIS6, 4, NGIS6, 0, 3, 4,
-  REPEAT, 77, 0, 22, 0,
-  // Address 114
-                      NE6,   4, NDIS6, 2, NB5,   4, NCIS6, 0, 3, 4,
+  // Address 67
+  NGIS5, -2, NE6,   -2, NDIS6, -2, NCIS6, -2, NB5,   -2,
+  NCIS6, 20, NB5,   15, NGIS5, 20,
+  NGIS5, -2, NFIS5, -1, NFIS5, -2, NA5,   -1, NFIS5, -2, NGIS5, 15,
+  REPEAT, 67, 0, 20, 0,
+  // Address 100
+                        NE5,   -2, NDIS5, -1, NB4,   -2, NCIS5, 15,
   
-  // Address 124
-  LOOP, NGIS6, 4, 3, NGIS6, 2,
-                      NFIS6, 4, NE6,   2, NB6,   4, NB6,   0, 3, 4,
-  NE6,   4, NFIS6, 2, NE6,   4, NFIS6, 2, NA6,   4, NGIS6, 0, 3, 4,
-  REPEAT, 124, 0, 16, 0,
-  // Address 159
-  NGIS6, 4, NFIS6, 2, REPEAT, 114, 0, 10, 0,
+  // Address 108
+  LOOP, NGIS5, -2, 3,   NGIS5, -1,
+                        NFIS5, -2, NE5,   -1, NB5,   -2, NB5,   15,
+  NE5,   -2, NFIS5, -1, NE5,   -2, NFIS5, -1, NA5,   -2, NGIS5, 15,
+  REPEAT, 108, 0, 14, 0,
+  // Address 139
+  NGIS5, -2, NFIS5, -1, REPEAT, 100, 0, 8, 0,
   
-  // Address 168
-  NB5,   4, NCIS6, 2,
-  NE6,   4, NGIS6, 4, NE7,   2,
-  NE7,   8, NDIS7, 8, NB6,   4, NCIS7, 2,
-  NE7,   4, NCIS7, 4, NA6,   1,
-  NGIS6, 2,
-  NGIS6, 4, NFIS6, 4, NE6,   2,
-  NCIS7, 8, NA6,   8, NGIS6, 8, NE6,   8, NFIS6, 2,
-  NE6,   4, NFIS6, 4, NDIS6, 0, 3, 4,
+  // Address 148
+  NB4,   -2, NCIS5, -1,
+  NE5,   -2, NGIS5, -2, NE6,   -1,
+  NE6,   -4, NDIS6, -4, NB5,   -2, NCIS6, -1,
+  NE6,   -2, NCIS6, -2, NA5,   20,
+  NGIS5, -1,
+  NGIS5, -2, NFIS5, -2, NE5,   -1,
+  NCIS6, -3, NA5,   -4, NGIS5, -4, NE5,   -4, NFIS5, -1,
+  NE5,   -2, NFIS5, -2, NDIS5, 15,
   
-  REPEAT, 168, 0, 42, 0,
+  REPEAT, 148, 0, 42, 0,
   REST_FACTOR, 50,
-  LOOP, NFIS6, 3, 3, NGIS6, 3, NE6, 3, NE6, 3, NDIS6, 3, NDIS6, 3, NCIS6, 0, 2, 3,
+  LOOP, NFIS5, 7, 3, NGIS5, 7, NE5, 7, NE5, 7, NDIS5, 7, NDIS5, 7, NCIS5, 17,
   REST_FACTOR, 20,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
   
-  REPEAT, 24, 0, 100, 0,
+  REPEAT, 24, 0, 84, 0,
   
   REST_FACTOR, 50,
-  // Address 262
-  LOOP, NGIS6, 4, 5, NFIS6, 4, NE6, 4, NE6, 4, LOOP, NB6, 4, 4,
-  NE6, 4, NFIS6, 4, NFIS6, 4, NE6, 4, NFIS6, 4, NFIS6, 4, NA6, 4, LOOP, NGIS6, 4, 3,
-  REPEAT, 6, 1, 14, 0,
+  // Address 238
+  LOOP, NGIS5, -2, 5, NFIS5, -2, NE5, -2, NE5, -2, LOOP, NB5, -2, 4,
+  NE5, -2, NFIS5, -2, NFIS5, -2, NE5, -2, NFIS5, -2, NFIS5, -2, NA5, -2, LOOP, NGIS5, -2, 3,
+  REPEAT, 238, 0, 14, 0,
   REST_FACTOR, 20,
-  REPEAT, 159, 0, 59, 0,
-  REPEAT, 168, 0, 42, 0,
-  REPEAT, 114, 0, 10, 0,
-  REPEAT, 168, 0, 10, 0,
-  REPEAT, 168, 0, 10, 0,
-  // Address 326
-  REPEAT, 172, 0, 6, 0,
-  REPEAT, 172, 0, 6, 0,
-  REPEAT, 172, 0, 6, 0,
-  REPEAT, 70, 1, 10, 0,
-  // Address 346
-  NGIS6, 4, NE7,   2,
-  NGIS6, 4, NE7,   2,
-  NGIS6, 4, NE7,   2,
-  REPEAT, 90, 1, 8, 0,
+  REPEAT, 139, 0, 57, 0,
+  REPEAT, 148, 0, 42, 0,
+  REPEAT, 100, 0, 8, 0,
+  REPEAT, 148, 0, 10, 0,
+  REPEAT, 148, 0, 10, 0,
+  // Address 302 (46, 1)
+  REPEAT, 152, 0, 6, 0,
+  REPEAT, 152, 0, 6, 0,
+  REPEAT, 152, 0, 6, 0,
+  REPEAT, 46, 1, 10, 0,
+  // Address 322 (66, 1)
+  NGIS5, -2, NE6,   -1,
+  NGIS5, -2, NE6,   -1,
+  NGIS5, -2, NE6,   -1,
+  REPEAT, 66, 1, 8, 0,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
 
-  NE6, 4, NDIS7, 4, NB6, 4, NCIS7, 2,
-  // Address 381
-  NB6, 4, NGIS6, 4, NGIS7, 2,
-  NB6, 8, NGIS6, 8, NB6, 8, NGIS6, 8, NE7, 2,
-  NE7, 4, NFIS7, 4, NCIS7, 1,
-  NB6, 2,
-  NE7, 4, NFIS7, 4, NDIS7, 2,
-  NGIS7, 8, NFIS7, 8, NE7, 8, NDIS7, 8, NE7, 2,
-  NE7, 4, NFIS7, 4, NDIS7, 0, 3, 4,
+  NE5, -2, NDIS6, -2, NB5, -2, NCIS6, -1,
+  // Address 357 (101, 1)
+  NB5,   -2, NGIS5, -2, NGIS6, -1,
+  NB5,   -4, NGIS5, -4, NB5,   -4, NGIS5, -4, NE6, -1,
+  NE6,   -2, NFIS6, -2, NCIS6, 20,
+  NB5,   -1,
+  NE6,   -2, NFIS6, -2, NDIS6, -1,
+  NGIS6, -4, NFIS6, -4, NE6,   -4, NDIS6, -4, NE6, -1,
+  NE6,   -2, NFIS6, -2, NDIS6, 15,
   
-  REPEAT, 125, 1, 44, 0, NDIS7, 0, 2, 1
+  REPEAT, 101, 1, 44, 0, NDIS6, 40
 };
 
-#define LOWEST_TONE  NB5
-#define HIGHEST_TONE NGIS7
+#define LOWEST_TONE  NB4
+#define HIGHEST_TONE NGIS6
