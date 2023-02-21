@@ -21,16 +21,20 @@ TonePlayer::TonePlayer(uint8_t speaker_pin) {
 	speakerPin = speaker_pin;
 }
 
-void TonePlayer::setSong(const uint8_t* ptr_song_buffer, uint16_t tone_size) {
+void TonePlayer::setSong(const uint8_t* ptr_song_buffer, uint16_t tone_size, uint16_t bpm) {
   if (isPlaying) {
     stop();
   }
   songBuffer = ptr_song_buffer;
   toneSize = tone_size;
+  beatUnit = (bpm == 0) ? 0 : 60000 / bpm;
 }
 
-void TonePlayer::setTempo(uint16_t current_tempo) {
-  tempo = (current_tempo == 0) ? 1000 : current_tempo;
+void TonePlayer::setTempo(uint16_t bpm) {
+  beatUnit = (bpm == 0) ? 0 : 60000 / bpm;
+  if (beatUnit == 0 && isPlaying) {
+    stop();
+  }
 }
 
 void TonePlayer::setRestFactor(uint8_t rest_factor) {
@@ -42,10 +46,12 @@ void TonePlayer::setToneShift(int8_t tone_shift) {
 }
 
 void TonePlayer::play(uint16_t start_from_address) {
-  tonePointer = start_from_address;
-  stackPointer = 0;
-  toneCode = FETCH;
-  isPlaying = true;
+  if (beatUnit) {
+    tonePointer = start_from_address;
+    stackPointer = 0;
+    toneCode = FETCH;
+    isPlaying = true;
+  }
 }
 
 void TonePlayer::pause() {
@@ -271,16 +277,22 @@ uint16_t TonePlayer::getFreqShift(int8_t pitch) {
 
 uint16_t TonePlayer::getDuration(void) {
   uint16_t duration;
-  uint8_t  div, mul = 1;
-  div = pgm_read_byte_near(songBuffer + tonePointer++);
-  if (div == 0) {
+  uint8_t  mul, div;
+  int8_t   val = pgm_read_byte_near(songBuffer + tonePointer++);
+  if (val < 0) {
+    duration = beatUnit / -val;
+  }
+  else if (val > 0) {
+    duration = (uint32_t)beatUnit * val / 10;
+  }
+  else {  // val == 0
     mul = pgm_read_byte_near(songBuffer + tonePointer++);
     div = pgm_read_byte_near(songBuffer + tonePointer++);
     if (div == 0) {
       div = 255;
     }
+    duration = (uint32_t)beatUnit * mul / div;
   }
-  duration = (uint32_t)tempo * mul / div;
   return duration;
 }
 
