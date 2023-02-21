@@ -3,64 +3,63 @@
 
 #include <TonePlayer.h>
 
-#define NUMBER_OF_SONG 11
+#define NUMBER_OF_SONG 10
 // Song  1: Pirates of The Carribean by Alan Walker
 // Song  2: Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri
-// Song  3: Hark The Herald Angels Sing
-// Song  4: Phantom by Dimitri Vangelis & Wyman
-// Song  5: Monody (Radio Edit) by TheFatRat ft. Laura Brehm
-// Song  6: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
-// Song  7: Hello World by Alan Walker ft. Torine
-// Song  8: Catch Me If You Can by Alan Walker ft. Sorana
-// Song  9: Lovesick by Alan Walker ft. Sophie Simmons
-// Song 10: Unity by Alan Walker ft. The Walkers
-// Song 11: The Spectre by Alan Walker
+// Song  3: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
+// Song  4: Hello World by Alan Walker ft. Torine
+// Song  5: Catch Me If You Can by Alan Walker ft. Sorana
+// Song  6: Lovesick by Alan Walker ft. Sophie Simmons
+// Song  7: Unity by Alan Walker ft. The Walkers
+// Song  8: The Spectre by Alan Walker
+// Song  9: Alone by Alan Walker ft. Tove Stryrke
+// Song 10: Creatures by Hot Shade ft. Nomi Bontegard
 
 
 /*****************************************************************************************/
 // Song 1: Pirates of The Carribean by Alan Walker
 const PROGMEM uint8_t SONG_1[] = {
   REST_FACTOR, 50,
-  ND6, 0, 7, 50, NG6, 0, 7, 50,
-  // Address 10
-  NA6, 0, 21, 25, NAIS6, 0, 21, 25, LOOP, NA6, 0, 7, 25, 4, NG6, 0, 21, 25,
+  ND6, -4, NG6, -4,
+  // Address 6 x10
+  NA6, 20, NAIS6, 20, LOOP, NA6, -2, 4, NG6, 20,
   REST_FACTOR, 0,
-  SEQUENCE_TONE, ND4, NA6, 1, 0, 7, 50,
+  SEQUENCE_TONE, ND4, NA6, 1, -4,
   
-  // Address 37
+  // Address 23
   REST_FACTOR, 50,
-  // Address 39
-  REPEAT, 10, 0, 18, 0,
-  NG6, 0, 21, 25, NF6,   0, 21, 25, NE6, 0, 7, 25, NF6, 0, 7, 25, NE6, 0, 7, 25, ND6, 0, 21, 25, REST, 0, 7, 25,
+  // Address 25 x39
+  REPEAT, 6, 0, 10, 0,
+  NG6, 20, NF6, 20, NE6, 6, NF6, 6, NE6, 6, ND6, 20, REST, -1,
   
-  REPEAT, 39, 0, 33, 0,
+  REPEAT, 25, 0, 19, 0,
   
-  // Address 77
-  ND5,   0, 21, 50, NF5,   0, 7, 50,
-  NA5,   0,  7, 25, NA5,   0, 7, 25, NA5, 0, 7, 25, NF5, 0, 7, 25,
-  NAIS5, 0,  7, 25, NAIS5, 0, 7, 25, NA5, 0, 7, 25, NG5, 0, 7, 25, NA5, 0, 21, 25,
-  REPEAT, 77, 0, 24, 0,
-  NG5,   0,  7, 25, NF5,   0, 7, 25, NE5, 0, 7, 25, NF5, 0, 7, 25, ND5, 0, 21, 25,
+  // Address 49
+  ND5,    8, NF5,   -4,
+  NA5,   -2, NA5,   -2, NA5, -2, NF5, -2,
+  NAIS5, -2, NAIS5, -2, NA5, -2, NG5, -2, NA5, -1, REST, -1,
+  REPEAT, 49, 0, 12, 0,
+  NG5,   -2, NF5,   -2, NE5, -2, NF5, -2, ND5, -1, REST, -1,
   
-  REPEAT, 77, 0, 24, 0,
-  REPEAT, 77, 0, 24, 0,
-  REPEAT, 77, 0, 16, 0,
-  REPEAT, 77, 0, 16, 0,
+  REPEAT, 49, 0, 12, 0,
+  REPEAT, 49, 0, 12, 0,
+  REPEAT, 49, 0,  8, 0,
+  REPEAT, 49, 0,  8, 0,
   
-  // Address 166
-  REPEAT, 77, 0, 69, 0,
+  // Address 110
+  REPEAT, 49, 0, 41, 0,
   
-  REPEAT, 77, 0, 44, 0,
-  NG5, 0, 21, 50, NG5, 0,  7, 50, NG5, 0, 7, 25, NA5, 0, 7, 25, NF5, 0,  7, 25,
-  NF5, 0,  7, 50, NG5, 0,  7, 50, NF5, 0, 7, 25, ND5, 0, 7, 25, NE5, 0,  7, 25,
-  NE5, 0,  7, 50, NE5, 0,  7, 50, NF5, 0, 7, 25, NE5, 0, 7, 25, ND5, 0, 21, 25,
+  REPEAT, 49, 0, 24, 0,
+  NG5,  8, NG5, -4, NG5, -2, NA5, -2, NF5, -2,
+  NF5, -4, NG5, -4, NF5, -2, ND5, -2, NE5, -2,
+  NE5, -4, NE5, -4, NF5, -2, NE5, -2, ND5, -1, REST, -1,
   
-  REPEAT, 166, 0, 70, 0,
+  REPEAT, 110, 0, 42, 0,
   
-  REPEAT, 39, 0, 38, 0,
+  REPEAT, 25, 0, 24, 0,
   
-  REPEAT, 39, 0, 202, 0,
-  REST_FACTOR, 20,
+  REPEAT, 25, 0, 132, 0,
+  REST_FACTOR, 20
 };
 
 
@@ -68,626 +67,608 @@ const PROGMEM uint8_t SONG_1[] = {
 // Song 2: Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri
 const PROGMEM uint8_t SONG_2[] = {
   REST_FACTOR, 50,
-  LOOP, NGIS6, 0, 2, 3, 4,
-  LOOP, NFIS6, 0, 2, 3, 4,
-  LOOP, NE6,   0, 2, 3, 4,
-  LOOP, NGIS6, 0, 2, 3, 4, REST, 6,
+  LOOP, NGIS5, -1, 4,
+  LOOP, NFIS5, -1, 4,
+  LOOP, NE5,   -1, 4,
+  LOOP, NGIS5, -1, 4, REST, -1,
   REST_FACTOR, 20,
   
-  // Address 30
-  NGIS6, 5, NAIS6, 5, NB6,   2, REST,  2,
-  NB6,   5, NAIS6, 5, NGIS6, 5, NB6,   5, NAIS6, 2, NFIS6, 2, REST, 2,
-  NCIS7, 5, NB6,   5, NAIS6, 5, NGIS6, 5, NB6,   2, REST,  2,
-  NCIS7, 5, NB6,   5, NAIS6, 5, NGIS6, 5, NB6,   2, NB6,   5, NAIS6, 2, REST, 4,
+  // Address 22
+  NGIS5, -3, NAIS5, -3, NB5,   -1, REST,  -1,
+  NB5,   -3, NAIS5, -3, NGIS5, -3, NB5,   -3, NAIS5, -1, NFIS5, -1, REST,  -1,
+  NCIS6, -3, NB5,   -3, NAIS5, -3, NGIS5, -3, NB5,   -1, REST,  -1,
+  NCIS6, -3, NB5,   -3, NAIS5, -3, NGIS5, -3, NB5,   -1, NB5,   -3, NAIS5, -1, REST, -1,
   
-  REPEAT, 30, 0, 50, 0,
+  REPEAT, 22, 0, 50, 0,
   
-  // Address 85
-  NGIS6, 6, NAIS6, 6, NB6,   3, NB6,   3, NAIS6, 3, NAIS6, 3,
-  LOOP, NGIS6, 6, 3,  NGIS6, 3, REST,  6,
-  NGIS6, 6, NFIS6, 6, NGIS6, 3, NGIS6, 3, NAIS6, 3, NAIS6, 3,
-  LOOP, NB6,   6, 3,  NB6,   3, REST,  6,
-  // Address 125
-  REPEAT, 85, 0, 20, 0,
-  // Address 130
-  NDIS7, 3, NCIS7, 3, NB6,   3, NAIS6, 3, NFIS6, 3, NGIS6, 3, REST, 3,
+  // Address 77
+  NGIS5, -4, NAIS5, -4, NB5,   -2, NB5,   -2, NAIS5, -2, NAIS5, -2,
+  LOOP,      NGIS5, -4, 3,         NGIS5, -2, REST,  -4,
+  NGIS5, -4, NFIS5, -4, NGIS5, -2, NGIS5, -2, NAIS5, -2, NAIS5, -2,
+  LOOP,      NB5,   -4, 3,         NB5,   -2, REST,  -4,
+  // Address 117
+  REPEAT, 77, 0, 20, 0,
+  // Address 122
+  NDIS6, -2, NCIS6, -2, NB5,   -2, NAIS5, -2, NFIS5, -2, NGIS5, -2, REST, -2,
   
-  REPEAT, 85, 0, 59, 0,
+  REPEAT, 77, 0, 59, 0,
   
-  // Address 149
-  NFIS6, 6, NGIS6, 6, NAIS6, 6,
+  // Address 141
+  NFIS5, -4, NGIS5, -4, NAIS5, -4,
   REST_FACTOR, 50,
-  NB6,   3, NB6,   3, NAIS6, 3, NAIS6, 3, NGIS6, 3, NGIS6, 3, REST, 3,
+  NB5,   -2, NB5,   -2, NAIS5, -2, NAIS5, -2, NGIS5, -2, NGIS5, -2, REST, -2,
   REST_FACTOR, 20,
-  NGIS6, 6, NFIS6, 6,
+  NGIS5, -4, NFIS5, -4,
   REST_FACTOR, 50,
-  NGIS6, 3, NGIS6, 3, NAIS6, 3, NAIS6, 3, NB6,   3, NB6,   3, REST, 3,
+  NGIS5, -2, NGIS5, -2, NAIS5, -2, NAIS5, -2, NB5,   -2, NB5,   -2, REST, -2,
   REST_FACTOR, 20,
-  REPEAT, 149, 0, 22, 0,
-  REPEAT, 130, 0, 14, 0,
+  REPEAT, 141, 0, 22, 0,
+  REPEAT, 122, 0, 14, 0,
   REST_FACTOR, 20,
   
-  REPEAT, 149, 0, 58, 0,
+  REPEAT, 141, 0, 58, 0,
   
-  REPEAT, 30, 0, 182, 0,
+  REPEAT, 22, 0, 182, 0,
   
-  // Address 217
-  NB5, 4, REST, 3,
-  LOOP, NB5, 4, 4, REST, 3,
-  NGIS5, 4, NAIS5, 4, NB5, 4, NAIS5, 4, REST, 3,
-  NAIS5, 4, NAIS5, 4, NB5, 4, NAIS5, 4, REST, 3,
-  NFIS5, 4, NGIS5, 4, REST, 3,
-  LOOP, NGIS5, 4, 4, REST, 3,
-  NDIS5, 4, NE5, 4, NFIS5, 4, NGIS5, 4, REST, 3,
-  NGIS5, 4, NAIS5, 4, NB5, 4, NAIS5, 4, REST, 3,
+  // Address 209
+  NB4,   -3, REST, -3,
+  LOOP,      NB4,   -3, 4,         REST,  -3,
+  NGIS4, -3, NAIS4, -3, NB4,   -3, NAIS4, -3, REST, -3,
+  NAIS4, -3, NAIS4, -3, NB4,   -3, NAIS4, -3, REST, -3,
+  NFIS4, -3, NGIS4, -3, REST,  -3,
+  LOOP,      NGIS4, -3, 4,         REST,  -3,
+  NDIS4, -3, NE4,   -3, NFIS4, -3, NGIS4, -3, REST, -3,
+  NGIS4, -3, NAIS4, -3, NB4,   -3, NAIS4, -3, REST,  7,
   
-  // Address 279
-  NGIS5, 4, NAIS5, 4, NB5, 4, REST, 3,
-  LOOP, NB5, 4, 4, REST, 3,
-  NAIS5, 4, NAIS5, 4, NB5, 4, NDIS6, 4, REST, 3,
-  NAIS5, 4, NAIS5, 4, NB5, 4, NAIS5, 4, REST, 3,
-  NGIS5, 4, NAIS5, 4, NB5, 4, REST, 3,
-  NGIS5, 4, NFIS5, 4, NGIS5, 4, REST, 3,
-  NGIS5, 4, NAIS5, 4, NB5, 4, REST, 3,
-  NB5, 4, REST, 4, NAIS5, 4, REST, 4,
+  // Address 271
+  NGIS4, -3, NAIS4, -3, NB4,   -3, REST,  -3,
+  LOOP,      NB4,   -3, 4,         REST,  -3,
+  NAIS4, -3, NAIS4, -3, NB4,   -3, NDIS5, -3, REST, -3,
+  NAIS4, -3, NAIS4, -3, NB4,   -3, NAIS4, -3, REST, -3,
+  NGIS4, -3, NAIS4, -3, NB4,   -3, REST,  -3,
+  NGIS4, -3, NFIS4, -3, NGIS4, -3, REST,  -3,
+  NGIS4, -3, NAIS4, -3, NB4,   -3, REST,  -3,
+  NB4,   -3, REST,  -3, NAIS4, -3, REST,   6,
   
-  // Address 345
-  NGIS5, 6, NAIS5, 6, NB5,   3, NB5,   3, NAIS5, 3, NAIS5, 3,
-  LOOP, NGIS5, 6, 3,  NGIS5, 3, REST,  6,
-  NGIS5, 6, NFIS5, 6, NGIS5, 3, NGIS5, 3, NAIS5, 3, NAIS5, 3,
-  LOOP, NB5,   6, 3,  NB5,   3, REST,  6,
-  REPEAT, 89, 1, 20, 0,
-  NDIS6, 3, NCIS6, 3, NB5,   3, NAIS5, 3, NFIS5, 3, NGIS5, 2, REST, 3,
+  // Address 337 (81, 1)
+  NGIS4, -4, NAIS4, -4, NB4,   -2, NB4,   -2, NAIS4, -2, NAIS4, -2,
+  LOOP,      NGIS4, -4, 3,         NGIS4, -2, REST,  -4,
+  NGIS4, -4, NFIS4, -4, NGIS4, -2, NGIS4, -2, NAIS4, -2, NAIS4, -2,
+  LOOP,      NB4,   -4, 3,         NB4,   -2, REST,  -4,
+  REPEAT, 81, 1, 20, 0,
+  NDIS5, -2, NCIS5, -2, NB4,   -2, NAIS4, -2, NFIS4, -2, NGIS4, -2, REST, -1,
   
-  // Address 404
-  NB5,   4, NCIS6, 4, NDIS6, 4, REST, 5,
-  NDIS6, 4, REST,  5, NDIS6, 4, REST, 5, NDIS6, 4, REST, 5, NE6,   4, REST, 2,
-  NE6,   4, NDIS6, 4, NCIS6, 4, REST, 5,
-  NCIS6, 4, REST,  5, NCIS6, 4, REST, 5, NB5,   4, REST, 5, NDIS6, 4, REST, 6,
-  NFIS6, 6, REPEAT, 125, 0, 19, 0,
+  // Address 396
+  NB4,   -3, NCIS5, -3, NDIS5, -3, REST, -3,
+  NDIS5, -3, REST,  -3, NDIS5, -3, REST, -3, NDIS5, -3, REST, -3, NE5,   -3, REST, 13,
+  NE5,   -3, NDIS5, -3, NCIS5, -3, REST, -3,
+  NCIS5, -3, REST,  -3, NCIS5, -3, REST, -3, NB4,   -3, REST, -3, NDIS5, -3, REST, -3,
+  NFIS5, -4, REPEAT, 117, 0, 19, 0,
   
-  REPEAT, 149, 0, 56, 0,
-  NAIS6, 3, NB6,   3, NB6,   3, NAIS6, 3, NFIS6, 3, NGIS6, 3, REST, 3,
-  NAIS6, 3, NB6,   3, NB6,   3, NCIS7, 3, NB6,   3, NDIS7, 3, REST, 3,
-  NDIS7, 3, NDIS7, 3, NDIS7, 3, NCIS7, 3, NAIS6, 3, NB6,   3, REST, 3,
-  REPEAT, 130, 0, 14, 0,
+  REPEAT, 141, 0, 56, 0,
+  NAIS5, -2, NB5,   -2, NB5,   -2, NAIS5, -2, NFIS5, -2, NGIS5, -2, REST, -2,
+  NAIS5, -2, NB5,   -2, NB5,   -2, NCIS6, -2, NB5,   -2, NDIS6, -2, REST, -2,
+  NDIS6, -2, NDIS6, -2, NDIS6, -2, NCIS6, -2, NAIS5, -2, NB5,   -2, REST, -2,
+  REPEAT, 122, 0, 14, 0,
   REST_FACTOR, 20
 };
 
 
 /*****************************************************************************************/
-// Song 3: Hark The Herald Angels Sing
+// Song 3: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
 const PROGMEM uint8_t SONG_3[] = {
-  NC7, 0, 2, 3,
-  NC7, 3, NC7, 3, ND7,   3, NC7,   3, NAIS6, 3, NA6,  3, NAIS6, 0, 2, 3,
-  NG6, 3, NA6, 3, NC7,   3, NAIS6, 3, NA6,   3, NG6,  3, NA6,   0, 2, 3,
-  NF6, 3, NG6, 3, NAIS6, 3, NA6,   3, NG6,   3, NF6,  3, NG6,   0, 2, 3,
-  NG6, 3, NF6, 3, NE6,   1, ND6,   3, NC6,   0, 4, 3, NF6, 0, 2, 3, NG6, 0, 2, 3,
-  NA6, 0, 2, 3, NAIS6, 0, 2, 3, NA6, 0, 4, 3, NG6, 0, 4, 3, NF6,  0, 4, 3, REST, 0, 2, 3,
+  NE5, -1, NG5, -1, NA5, 40, NC5, 20, ND5, 40,
+  NE5, -1, NF5, 40, NE5, 20, ND5, 40,
+  NE5, -1, NF5, 40, NF5, -1, NG5, 40, ND5, -1, NA5, 60,
   
-  // Address 96
-  NC6,  0, 2, 3, NF6, 0, 2, 3, NF6, 1, NE6,   3, NF6,   0, 2, 3, NA6, 0, 2, 3, NA6, 0, 2, 3, NG6, 0, 2, 3,
-  NC7,  0, 2, 3, NC7, 0, 2, 3, NC7, 1, NAIS6, 3, NA6,   0, 2, 3, NG6, 0, 2, 3, NA6, 1, REST, 3,
-  REPEAT, 96, 0, 28, 0,
-  NC7,  0, 2, 3, NG6, 0, 2, 3, NG6, 1, NF6,   3, NE6,   0, 2, 3, ND6, 0, 2, 3, NC6, 1, REST, 3,
-  // Address 177
-  NC7,  0, 2, 3, NC7, 0, 2, 3, NC7, 1, NF6,   3, NAIS6, 0, 2, 3, NA6, 0, 2, 3, NA6, 0, 2, 3, NG6, 0, 2, 3,
-  REPEAT, 177, 0, 28, 0,
-  // Address 210
-  ND7, 1, ND7, 3, ND7, 0, 2, 3, NC7, 0, 2, 3, NAIS6, 0, 2, 3, NA6, 0, 2, 3, NAIS6, 1, REST, 3,
-  NG6, 0, 2, 3, NA6, 0, 2, 3, NC7, 1, NF6, 3, NF6,   0, 2, 3, NG6, 0, 2, 3, NA6,   1, REST, 3,
-  REPEAT, 210, 0, 44, 0,                                                       NF6,   1, REST, 3,
-  
-  REPEAT, 0, 0, 96, 0,
-  
-  REPEAT, 0, 0, 96, 0,
-  
-  REPEAT, 96, 0, 77, 0,
-  NC6, 3, NC6, 3, NF6, 3, NA6, 3,
-  REPEAT, 177, 0, 90, 0,
-};
-
-
-/*****************************************************************************************/
-// Song 4: Phantom by Dimitri Vangelis & Wyman
-const PROGMEM uint8_t SONG_4[] = {
-  REST_FACTOR, 0,
-  NC7, 0, 4, 3, NCIS7, 4, NC7, 4, NAIS6, 4, NGIS6, 1, REST, 6,
-  
-  // Address 16
-  REST_FACTOR, 40,
-  // Address 18
-  SWING_CENTER, NGIS6, 3, 25, 3, SWING_CENTER, NGIS6, 3, 25, 3, SWING_CENTER, NGIS6, 3, 25, 3,
-  REST_FACTOR,  20, SWING_CENTER, NG6, 6, 25, 3, SWING_CENTER, NF6, 6, 25, 3,
-  REST_FACTOR,  40, SWING_CENTER, NF6, 3, 25, 3,
-  // Address 52
-  SWING_CENTER, NAIS6, 3, 25, 3, SWING_CENTER, NAIS6, 3, 25, 3, SWING_CENTER, NAIS6, 3, 25, 3,
-  REST_FACTOR, 20, SWING_CENTER, NF6, 6, 25, 3, SWING_CENTER, NCIS7, 6, 25, 3,
-  REST_FACTOR, 40,
-  // Address 81
-  SWING_CENTER, NC7, 3, 25, 3,
-  SWING_CENTER, NC7, 3, 25, 3, REPEAT, 81, 0, 10, 0,
-  REST_FACTOR, 20, SWING_CENTER, NGIS6, 6, 25, 3, SWING_CENTER, NAIS6, 6, 25, 3,
-  REST_FACTOR, 40,
-  SWING_CENTER, NDIS7, 3, 25, 3,
-  REPEAT, 52, 0, 10, 0,
-  // Address 120
-  SWING_CENTER, NGIS6, 3, 25, 3, SWING_CENTER, NG6, 3, 25, 3, SWING_CENTER, NGIS6, 3, 25, 3,
-  
-  REPEAT, 18, 0, 97, 0,
-  REPEAT, 81, 0, 10, 0, SHIFT_TONE, 12, REPEAT, 120, 0, 15, 0, SHIFT_TONE, -12,
-  
-  SHIFT_TONE, -12,
-  REPEAT, 18, 0, 136, 0,
-  
-  SHIFT_TONE, -12,
-  REPEAT, 18, 0, 136, 0,
-  
-  SHIFT_TONE, 12,
-  REPEAT, 18, 0, 136, 0,
-  
-  SHIFT_TONE, 12,
-  REPEAT, 18, 0, 136, 0,
-  
-  // Address 182
-  NGIS6, 3, NGIS6, 3, NGIS6, 3, REST_FACTOR, 20, NG6,   6, NF6,   6, REST_FACTOR, 40, NF6,   3,
-  NAIS6, 3, NAIS6, 3, NAIS6, 3, REST_FACTOR, 20, NF6,   6, NCIS7, 6, REST_FACTOR, 40, NC7,   3,
-  NC7,   3, NC7,   3, NC7,   3, REST_FACTOR, 20, NGIS6, 6, NAIS6, 6, REST_FACTOR, 40, NDIS7, 3,
-  NAIS6, 3, NAIS6, 3, NGIS6, 3, NG6,          3, NGIS6, 3,
-  
-  REPEAT, 182, 0, 48, 0,
-  NC7,   3, NC7,   3, NGIS7, 3, NG7,          3, NGIS7, 3,
-  
-  SHIFT_TONE, -12,
-  REPEAT, 182, 0, 73, 0,
-  
-  SHIFT_TONE,  12,
-  REPEAT, 182, 0, 71, 0,
-  REST_FACTOR, 20,
-  NGIS7, 0, 2, 1
-};
-
-
-/*****************************************************************************************/
-// Song 5: Monody (Radio_Edit) by TheFatRat ft. Laura Brehm
-const PROGMEM uint8_t SONG_5[] = {
-  // Address 0
-  NGIS6, 2, NB6,   2, NCIS7, 1,
-  NCIS7, 2, NB6,   2, NGIS6, 1,
-  NFIS6, 2, NE6,   2, NFIS6, 1,
-  NFIS6, 2, NE6,   2, NCIS6, 1,
-  NB5,   2, NCIS6, 2, NE6,   1,
-  NFIS6, 2, NGIS6, 2, NA6,   1,
-  NGIS6, 2, NE6,   2, NFIS6, 1, REST, 1,
-  
-  REPEAT, 0, 0, 34, 0,   NFIS6, 1,
-  NE6,   2, NDIS6, 2, NE6,   1, REST, 2,
-  
-  // Address 59
-  NFIS6, 7, NCIS6, 0, 2, 7, REST,  7,
-  NCIS6, 7, NE6,   0, 2, 7, NFIS6, 0, 2, 7, NCIS6, 0, 2, 7, REST, 7,
-  NCIS6, 7, NE6,   0, 2, 7, NFIS6, 0, 2, 7, NGIS6, 0, 2, 7,
-  NGIS6, 0, 2, 7, NFIS6, 0, 2, 7, NE6,   7, NGIS6, 7, NFIS6, 0, 2, 7, REST,  0, 2, 7,
-  
-  REPEAT, 59, 0, 30, 0,
-                            NCIS7, 0, 2, 7, NB6,   0, 2, 7,
-  NB6,   0, 2, 7, NGIS6, 0, 2, 7, NGIS6, 7, NE6,   7, NFIS6, 0, 2, 7, REST,  0, 2, 7,
-  
-  REPEAT, 59, 0, 91, 0,
-  
-  // Address 155
-  NGIS6, 0, 2, 7, NB6,   0, 2, 7, NCIS7, 0, 3, 7, NDIS7, 7,
-  NCIS7, 0, 2, 7, NB6,   0, 2, 7, NGIS6, 0, 4, 7,
-  NFIS6, 0, 2, 7, NE6,   0, 2, 7, NFIS6, 0, 3, 7, NGIS6, 7,
-  NFIS6, 0, 2, 7, NE6,   0, 2, 7, NCIS6, 0, 4, 7,
-  NB5,   0, 2, 7, NCIS6, 0, 2, 7, NE6,   0, 4, 7,
-  NFIS6, 0, 2, 7, NGIS6, 0, 2, 7, NA6,   0, 4, 7,
-  NGIS6, 0, 2, 7, NE6,   0, 2, 7, NFIS6, 1,       REST, 2,
-  
-  REPEAT, 155, 0, 72, 0,
-                                  NFIS6, 0, 4, 7,
-  NE6,   0, 2, 7, NDIS6, 0, 2, 7, NE6,   1,       REST, 2,
-  
-  REPEAT, 59, 0, 91, 0,
-  
-  REPEAT, 59, 0, 91, 0
-};
-
-
-/*****************************************************************************************/
-// Song 6: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
-const PROGMEM uint8_t SONG_6[] = {
-  NE6, 2, NG6, 2, NA6, 0, 2,   1, NC6, 1, ND6, 0, 2,   1,
-  NE6, 2, NF6, 0, 2,   1, NE6, 1, ND6, 0, 2,   1,
-  NE6, 2, NF6, 0, 2,   1, NF6, 2, NG6, 0, 2,   1, ND6, 2, NA6, 0, 3, 1,
-  
-  // Address 44
-  NA5, 5, NC6, 5, ND6, 10, ND6, 10, REST, 5,
-  // Address 54
-  ND6, 5, NE6, 5, NF6, 10, NF6, 10, REST, 5,
+  // Address 30
+  NA4, -3, NC5, -3, ND5, -6, ND5, -6, REST, -3,
+  // Address 40 x54
+  ND5, -3, NE5, -3, NF5, -6, NF5, -6, REST, -3,
   // Address 64
-  NF6, 5, NG6, 5, NE6, 10, NE6, 10, REST, 5,
-  NE6, 5, ND6, 5, NC6, 10, ND6, 10, REST, 5,
+  NF5, -3, NG5, -3, NE5, -6, NE5, -6, REST, -3,
+  NE5, -3, ND5, -3, NC5, -6, ND5, -6, REST, -3,
   
-  REPEAT, 44, 0, 32, 0,
-          NC6, 5, ND6, 5, REST, 5,
+  REPEAT, 30, 0, 32, 0,
+           NC5, -3, ND5, -3, REST, -3,
   
-  REPEAT, 44, 0, 12, 0,
-          NF6, 5, NG6,   10, NG6,   10, REST, 5,
-  NG6, 5, NA6, 5, NAIS6, 10, NAIS6, 10, REST, 5,
-  NA6, 5, NG6, 5, NA6,   10, ND6,   10, REST, 5,
+  REPEAT, 30, 0, 12, 0,
+           NF5, -3, NG5,   -6, NG5,   -6, REST, -3,
+  NG5, -3, NA5, -3, NAIS5, -6, NAIS5, -6, REST, -3,
+  NA5, -3, NG5, -3, NA5,   -6, ND5,   -6, REST, -3,
   
-  // Address 128
-  ND6, 5, NE6, 5, NF6, 5, REST, 10, NF6, 10, NG6, 5, NA6, 5, ND6, 5, REST, 5,
-  ND6, 5, NF6, 5, NE6, 5, REST, 10, NE6, 10, NF6, 5, ND6, 5, NE6, 5, REST, 5,
+  // Address 114
+  ND5, -3, NE5, -3, NF5, -3, REST, -6, NF5, -6, NG5, -3, NA5, -3, ND5, -3, REST, -3,
+  ND5, -3, NF5, -3, NE5, -3, REST, -6, NE5, -6, NF5, -3, ND5, -3, NE5, -3, REST, -3,
   
-  REPEAT, 44, 0, 114, 0,                             NE6, 5, ND6, 5, REST, 5,
+  REPEAT, 30, 0, 114, 0,                                 NE5, -3, ND5, -3, REST, -3,
   
-  // Address 175
-  NF6, 6, NG6, 6, LOOP, NA6, 3, 3, NAIS6, 6, NA6, 6, REST, 3,
-  LOOP, NG6, 3, 3, NG6, 6, NA6, 6, REST, 3,
-  REPEAT, 179, 0, 10, 0,
-  NG6, 3, NF6, 3, NE6, 3, ND6, 3, REST, 3,
+  // Address 161
+  NF5, -4, NG5, -4, LOOP,    NA5, -2, 3,        NAIS5, -4, NA5, -4, REST, -2,
+  LOOP,    NG5, -2, 3,       NG5, -4, NA5,  -4, REST,  -2,
+  REPEAT, 165, 0, 10, 0,
+  NG5, -2, NF5, -2, NE5, -2, ND5, -2, REST, -2,
   
-  REPEAT, 175, 0, 39, 0,
+  REPEAT, 161, 0, 39, 0,
   
-  // Address 219
-  NA5, 5, NC6, 5, ND6, 10, ND6, 10, REST, 5, NF6,  5, REST, 20, NF6, 5, REST, 5,
-  ND6, 5, NE6, 5, NF6, 10, NF6, 10, REST, 5, NG6,  4, REST, 20, NG6, 5, REST, 5,
-  NF6, 5, NG6, 5, NE6, 10, NE6, 10, REST, 5, NE6,  4, REST, 20, NE6, 5, REST, 5,
-  ND6, 5, NC6, 5, NC6, 10, ND6, 10, REST, 5, ND6, 10, NE6,  10, ND6, 10, NC6, 10, ND6, 10, REST, 5,
+  // Address 205
+  NA4, -3, NC5, -3, ND5, -6, ND5, -6, REST, 7, NF5, -3, REST, -6, NF5, -3, REST, -3,
+  ND5, -3, NE5, -3, NF5, -6, NF5, -6, REST, 7, NG5, -3, REST, -6, NG5, -3, REST, -3,
+  NF5, -3, NG5, -3, NE5, -6, NE5, -6, REST, 7, NE5, -3, REST, -6, NE5, -3, REST, -3,
+  ND5, -3, NC5, -3, NC5, -6, ND5, -6, REST, 7, ND5, -6, NE5,  -6, ND5, -6, NC5,  -6, ND5, -6, REST, -3,
   
-  REPEAT, 219, 0, 54, 0,
-  NA6, 5, NA6, 5, NAIS6, 10, NG6, 10, NA6, 10, REST, 5,
+  REPEAT, 205, 0, 54, 0,
+  NA5, -3, NA5, -3, NAIS5, -4, NG5, -4, NA5, -4, REST, -4,
   
-  REPEAT, 44, 0, 131, 0,
+  REPEAT, 30, 0, 131, 0,
   
-  // Address 317
-  NA6, 10, NC7, 5, REST, 10,
-  NC7, 10, NB6, 5, REST, 10,
-  NC7, 10, NA6, 5, REST, 10,
-  NC7, 10, NB6, 5, REST, 10,
-  NG6, 10, NC7, 5, REST, 10,
-  NC7, 10, NB6, 5, REST, 10,
-  NG6, 10, NA6, 5, REST, 10,
-  NF6, 10, ND6, 5, REST, 10,
+  // Address 303 (47, 1)
+  NA5, -3, NC6, -3, REST, -3,
+  NC6, -3, NB5, -3, NC6,  -3, REST, -3, NA5, -3, REST, -3,
+  NC6, -3, NB5, -3, NG5,  -3, REST, -3, NC6, -3, REST, -3,
+  NC6, -3, NB5, -3, NG5,  -3, REST, -3, NA5, -3, REST, -3,
+  NF5, -3, ND5, -3, REST, -3,
   
-  REPEAT, 61, 1, 44, 0,
-           NA6, 5, REST, 10,
+  REPEAT, 47, 1, 44, 0,
+           NA5, -3, REST, -3,
   
-  REPEAT, 61, 1, 36, 0,
-  NG6, 5, NF6, 5, NA6, 5, NF6, 5, NG6,5, NF6, 5, NE6, 5, NC6, 5, ND6, 5, REST, 1,
+  REPEAT, 47, 1, 36, 0,
+  NG5, -3, NF5, -3, NA5, -3, NF5, -3, NG5, -3, NF5, -3, NE5, -3, NC5, -3, ND5, -3, REST, 20,
   
-  REPEAT, 44, 0, 127, 0,
-  ND6,    5, REST,  5, ND6, 5, REST, 5, NE6, 5, REST, 5, NF6, 5, REST, 5,
-  NF6,    5, REST,  5, NG6, 5, REST, 5, NA6, 5, REST, 0, 2,   5,
-  NF6,   10, NE6,  10, ND6, 5, REST, 0, 2,   5,
-  NAIS6,  5, REST,  0, 2,   5,
-  NG6,   10, NF6,  10, NE6, 5, REST, 0, 2,   5,
-  NG6,    5, REST,  5, NF6, 5, REST, 5, NE6, 5, REST, 0, 2,   5,
-  REPEAT, 175, 0, 39, 0,
+  REPEAT, 30, 0, 127, 0,
+  ND5,   -3, REST, -3, ND5, -3, REST, -3, NE5, -3, REST, -3, NF5, -3, REST, -3,
+  NF5,   -3, REST, -3, NG5, -3, REST, -3, NA5, -3, REST, 0, 2, 3,
+  NF5,   -6, NE5,  -6, ND5, -3, REST, 0, 2, 3,
+  NAIS5, -3, REST, 0, 2, 3,
+  NG5,   -6, NF5,  -6, NE5, -3, REST, 0, 2, 3,
+  NG5,   -3, REST, -3, NF5, -3, REST, -3, NE5, -3, REST, 0, 2, 3,
+  REPEAT, 161, 0, 39, 0,
   
-  NF6, 6, NG6, 6, NA6, 3, REST, 3,
-  NAIS6, 3, REST, 3,
-  // Address 491
-  LOOP, NA6, 3,    3, NA6, 6, NG6,  6, REST, 3,
-  NG6,  3,   REST, 3, NF6, 3, REST, 3,
-  NE6,  3,   NF6,  3, NE6, 3, NE6,  6, ND6,  6, REST, 6,
+  NF5,   -4, NG5,  -4, NA5, -2, REST, -2,
+  NAIS5, -2, REST, -2,
+  // Address 477 (221, 1)
+  LOOP,      NA5,  -2, 3,       NA5,  -4, NG5, -4, REST, -2,
+  NG5, -2,   REST, -2, NF5, -2, REST, -2,
+  NE5, -2,   NF5,  -2, NE5, -2, NE5,  -4, ND5, -4, REST, -4,
   
-  NF6, 6, NE6, 6, ND6, 6, REST, 6, NA6,   3, REST, 6,
-  ND6, 6, NE6, 6, NF6, 6, REST, 6, NAIS6, 3, REST, 6,
-  ND6, 6, NE6, 6, NF6, 6, REST, 6,
-  REPEAT, 235, 1, 10, 0,
+  NF5, -4, NE5, -4, ND5, -4, REST, -4, NA5,   -2, REST, -4,
+  ND5, -4, NE5, -4, NF5, -4, REST, -4, NAIS5, -2, REST, -4,
+  ND5, -4, NE5, -4, NF5, -4, REST, -4,
+  REPEAT, 221, 1, 10, 0,
   REST_FACTOR, 50,
-  // Address 560
-  ND4, 3, NE4, 3, NF4, 3, NG4, 3, NA4, 3, NAIS4, 3, NC5, 3,
-  SHIFT_TONE, 12, REPEAT, 48, 2, 14, 0,
-  SHIFT_TONE, 12, REPEAT, 48, 2, 8, 0,
+  // Address 556 (34, 2)
+  ND3, -2, NE3, -2, NF3, -2, NG3, -2, NA3, -2, NAIS3, -2, NC4, -2,
+  SHIFT_TONE, 12, REPEAT, 34, 2, 14, 0,
+  SHIFT_TONE, 12, REPEAT, 34, 2, 8, 0,
   SHIFT_TONE, -24, REST_FACTOR, 20,
-  NA6, 3, REST, 3, NAIS6, 3, REST, 3,
-  NA6, 3, REST, 12, NG6, 3, REST, 12, NF6, 3, REST, 12,
-  NF6, 6, NE6, 6, ND6, 3, REST, 3,
-  NA5, 3, REST, 12, NG5, 3, REST, 12, NF5, 6, NE5, 6, ND5, 0, 3, 1, ND7, 3, REST, 3
+  NA5, -2, REST, -2, NAIS5, -2, REST, -2,
+  NA5, -2, REST, -6, NG5,   -2, REST, -6, NF5, -2, REST, -6,
+  NF5, -4, NE5,  -4, ND5,   -2, REST, -2,
+  NA4, -2, REST, -6, NG4,   -2, REST, -6, NF4, -4, NE4, -4, ND4, 60, ND6, -2, REST, -2
 };
 
 
 /*****************************************************************************************/
-// Song 7: Hello World by Alan Walker ft. Torine
-const PROGMEM uint8_t SONG_7[] = {
-  NAIS6, 8, NC7,   8, REST,  8, NCIS7, 2,
+// Song 4: Hello World by Alan Walker ft. Torine
+const PROGMEM uint8_t SONG_4[] = {
+  NAIS5, -4, NC6,   -4, REST,  -4, NCIS6, 8,
   // Address 8
-  NAIS6, 8, REST,  8, NCIS7, 4, NDIS7, 8, REST, 8, NC7,   2,
-  NAIS6, 8, NGIS6, 8, REST,  8, NAIS6, 2,
-  NGIS6, 8, REST,  8, NAIS6, 4, NCIS6, 8, REST, 8, NF6,   2,
-  NDIS6, 8, NCIS6, 8, REST,  8, NFIS6, 2,
-  NDIS6, 8, REST,  8, NFIS6, 4, NGIS6, 8, REST, 8, NF6,   2,
-  NDIS6, 8, NCIS6, 8, REST,  8, NDIS6, 2,
-  NCIS6, 8, REST,  8, NDIS6, 4, NGIS5, 8, REST, 8, NAIS5, 2,
-  REST,  2,
+  NAIS5, -4, REST,  -4, NCIS6, -2, NDIS6, -4, REST, -4, NC6,   8,
+  NAIS5, -4, NGIS5, -4, REST,  -4, NAIS5, 8,
+  NGIS5, -4, REST,  -4, NAIS5, -2, NCIS5, -4, REST, -4, NF5,   8,
+  NDIS5, -4, NCIS5, -4, REST,  -4, NFIS5, 8,
+  NDIS5, -4, REST,  -4, NFIS5, -2, NGIS5, -4, REST, -4, NF5,   8,
+  NDIS5, -4, NCIS5, -4, REST,  -4, NDIS5, 8,
+  NCIS5, -4, REST,  -4, NDIS5, -2, NGIS4, -4, REST, -4, NAIS4, 8,
+  REST,  -1,
   
   // Address 82
-  NAIS5,   4, NF6,    4, REST, 8, NF6,   0, 3, 4,
-  NDIS6,   4, NCIS6,  4, REST, 8,
-  // Address 98
-  NFIS6,   4, NFIS6,  4, REST, 8,
-  NGIS6,   4, NAIS6,  4, REST, 8, NF6,   0, 3, 4,
-  REPEAT, 98, 0,     16, 0,
-  NDIS6,   4, NCIS6,  4, REST, 8, NDIS6, 0, 3, 4, REST, 1,
+  NAIS4,   -2, NF5,    -2, REST, -4, NF5,   15,
+  NDIS5,   -2, NCIS5,  -2, REST, -4,
+  // Address 96
+  NFIS5,   -2, NFIS5,  -2, REST, -4,
+  NGIS5,   -2, NAIS5,  -2, REST, -4, NF5,   15,
+  REPEAT, 96, 0, 14, 0,
+  NDIS5,   -2, NCIS5,  -2, REST, -4, NDIS5, 15, REST, 20,
   
-  REPEAT, 82, 0, 49, 0,
+  REPEAT, 82, 0, 43, 0,
   
-  // Address 136
-  NAIS6,  4, NC7,   5, REST, 8, NCIS7, 2,
-  NAIS6,  4, NCIS7, 5, REST, 8, NC7,   2,
-  NAIS6,  4, NC7,   5, REST, 8, NAIS6, 2,
-  NGIS6,  4, NFIS6, 5, REST, 8, NF6,   2, REST, 2,
-  NFIS6,  2,
-  NDIS6,  4, NFIS6, 5, REST, 8, NF6,   2,
-  // Address 180
-  NDIS7, 16, NCIS6, 0, 3,   16, NCIS6, 5, REST, 8, NDIS6, 2,
-  NCIS6,  4, NC6,   5, REST, 8, NAIS5, 2, REST, 2,
+  // Address 130
+  NAIS5, -2, NC6,   -4, REST, -4, NCIS6, -1,
+  NAIS5, -2, NCIS6, -4, REST, -4, NC6,   -1,
+  NAIS5, -2, NC6,   -4, REST, -4, NAIS5, -1,
+  NGIS5, -2, NFIS5, -4, REST, -4, NF5,   -1, REST, -1,
+  NFIS5, -1,
+  NDIS5, -2, NFIS5, -4, REST, -4, NF5,   -1,
+  // Address 174
+  NDIS6, -8, NCIS5,  0, 3,     8, NCIS5, -4, REST, -4, NDIS5, -1,
+  NCIS5, -2, NC5,   -4, REST, -4, NAIS4, -1, REST, -1,
   
-  REPEAT, 142, 0, 60, 0,
+  REPEAT, 136, 0, 60, 0,
   
-  // Address 207
-  NF6,   8,
+  // Address 201
+  NF5, -4,
   REPEAT, 4, 0, 76, 0,
   
-  // Address 214
-  //NAIS5, 8, NCIS6, 8, NF6, 8, NAIS6, 8, NC7, 8, NCIS7, 8,
-  NAIS5, 8, NC6, 8, NCIS6, 8, NAIS6, 8, NC7, 8, NCIS7, 8,
+  // Address 208
+  NAIS4, -6, NC5, -6, NCIS5, -6, NAIS5, -6, NC6, -6, NCIS6, -6,
   REPEAT, 8, 0, 74, 0,
   
-  // Address 231
-  NAIS5, 4, NAIS5, 2, REST,  4,
-  NC6,   4, NC6,   2, REST,  4,
-  NCIS6, 4, NCIS6, 4, NDIS6, 8, NF6,   2, REST, 4,
-  NCIS6, 4, NFIS6, 4, NFIS6, 4,
-  NF6,   4, NFIS6, 4, NF6,   3,
-  NDIS6, 8, NCIS6, 4, NCIS6, 4, NDIS6, 2,
-  NCIS6, 4, NC6,   4, NAIS5, 2,
+  // Address 225
+  NAIS4, -2, NAIS4, -1, REST,  -2,
+  NC5,   -2, NC5,   -1, REST,  -2,
+  NCIS5, -2, NCIS5, -2, NDIS5, -4, NF5,   -1, REST, -4,
+  NCIS5, -2, NFIS5, -2, NFIS5, -2,
+  NF5,   -2, NFIS5, -2, NF5,   -2, REST,  -4,
+  NDIS5, -4, NCIS5, -2, NCIS5, -2, NDIS5, -1,
+  NCIS5, -2, NC5,   -2, NAIS4, -1,
   
-  REPEAT, 214, 0, 12, 0,
-  REPEAT, 231, 0, 48, 0,
+  REPEAT, 208, 0, 12, 0,
+  REPEAT, 225, 0, 50, 0,
   
-  REPEAT, 80, 0, 56, 0,
+  REPEAT, 80, 0, 50, 0,
   
-  // Address 294
-  NAIS6, 4, NC7,   4, NCIS7, 4, NC7,   4, NAIS6, 6, NAIS6, 3, REST, 2,
-  NDIS6, 3, REST,  3, NCIS6, 3, REST,  2,
-  NDIS6, 3, NCIS6, 3, NCIS6, 3, NCIS6, 3, NDIS6, 6, NF6,   2, REST, 3,
-  NDIS6, 3, NCIS6, 3, NCIS6, 3, NFIS6, 3, NGIS6, 6, NF6,   2, REST, 3,
-  NF7,   3, NDIS7, 3, NCIS7, 3, NCIS7, 3, NC7,   6, NAIS6, 2, REST, 3,
+  // Address 290
+  NAIS5, -4, NC6,   -4, REST,  -4, NCIS6, -4, NC6,   -4, REST,  -4, NAIS5, -4, NAIS5, -4, REST, -1,
+  NDIS5, -2, REST,  -2, NCIS5, -2, REST,  -2,
+  NDIS5, -2, NCIS5, -2, NCIS5, -2, NCIS5, -2, NDIS5, -2, NF5,   -1, REST,  -2,
+  NDIS5, -2, NCIS5, -2, NCIS5, -2, NFIS5, -2, NGIS5, -2, NF5,   -1, REST,  -2,
+  NF6,   -2, NDIS6, -2, NCIS6, -2, NCIS6, -2, NC6,   -2, NAIS5, -1, REST,  -2,
   
-  REPEAT, 136, 0, 95, 0,
+  REPEAT, 130, 0, 95, 0,
   
-  REPEAT, 80, 0, 56, 0
+  REPEAT, 80, 0, 50, 0
 };
 
 
 /*****************************************************************************************/
-// Song 8: Catch Me If You Can by Alan Walker ft. Sorana
-const PROGMEM uint8_t SONG_8[] = {
-  NA6, 0, 3, 2, NAIS6, 0, 3, 2, NG6, 0, 3, 2, NA6, 0, 3, 2,
+// Song 5: Catch Me If You Can by Alan Walker ft. Sorana
+const PROGMEM uint8_t SONG_5[] = {
+  NA5, 35, NAIS5, 35, NG5, 35, NA5, 35,
   
-  // Address 16
-  NA5, 3,
-  // Address 18
-  NF6, 3, NE6, 3, NF6, 6, NAIS5, 2,
-  NF6, 3, NE6, 3, NF6, 6, NB5,   2,
-  NF6, 3, NE6, 3, NF6, 6, NA5,   2,
-  REPEAT, 16, 0, 24, 0,   NG6,   2,
-  NF6, 3, NE6, 3, NG6, 3, NF6,   6, NE6, 1,
+  // Address 8
+  NA4, -1,
+  // Address 10
+  NF5, -1, NE5, -1, NF5, -2, NAIS4, 15,
+  NF5, -1, NE5, -1, NF5, -2, NB4,   15,
+  NF5, -1, NE5, -1, NF5, -2, NA4,   15,
+  REPEAT, 8, 0, 24, 0,       NG5,   15,
+  NF5, -1, NE5, -1, NG5, -1, NF5,   -2, NE5, 25,
 
-  REPEAT, 16, 0, 43, 0,
+  REPEAT, 8, 0, 43, 0,
   
-  // Address 64
-  NA6, 3, ND6, 6, NAIS6, 2, NAIS6, 6, NA6,   6, NG6,   2, REST, 4,
-  NG6, 3, NF6, 6, NA6,   2, NA6,   6, NA6,   6, NA6,   6, NG6,  6, NF6, 2, REST, 4,
-  NA6, 3, NC7, 6, NAIS6, 2, NAIS6, 6, NAIS6, 6, NAIS6, 6, NA6,  6, NG6, 2, REST, 10,
-  // Address 114
-  NA6, 6, NG6, 6, NA6,   6, NG6,   6, NA6,   3, NA6,   6, NA6,  6, NF7, 6, NE7,  3, ND7, 2,
-  
-  // Address 134
-  NG6, 6, NA6, 6, NF7,   6, NE7,   3, ND7,   2,
-  NG6, 6, NA6, 6, NAIS6, 6, NC7,   3, NAIS6, 2,
-  NF6, 6, NG6, 6, NA6,   6, NAIS6, 3, NA6,   3, NAIS6, 6, NA6, 3,
-  NA6, 6, NA6, 6, NF7,   6, NE7,   3, ND7,   2,
-  
-  REPEAT, 134, 0, 44, 0,
-  
-  REPEAT, 16, 0, 43, 0,
-
-  REPEAT, 64, 0, 119, 0,
-  
-  // Address 193
-  NA6, 3,
-  // Address 195
-  ND6, 3, ND6, 3, NG6, 6, NF6, 6, NE6, 3,
-  REPEAT, 195, 0, 10, 0,
-  REPEAT, 193, 0, 12, 0,
-  ND7, 3, ND7, 3,
-  
-  REPEAT, 193, 0, 26, 0,
-  
-  REPEAT, 64, 0, 119, 0,
-  
-  REPEAT, 134, 0, 30, 0,
-
-  REPEAT, 114, 0, 20, 0
-};
-
-
-/*****************************************************************************************/
-// Song 9: Lovesick by Alan Walker ft. Sophie Simmons
-const PROGMEM uint8_t SONG_9[] = {
-  // Address 0
-  ND6, 4, NE6, 0, 3, 4, NA6, 4, NC7, 0, 3, 4, NA6, 4, NGIS6, 0, 3, 4, NB6, 4, NA6, 0, 3, 4,
-  // Address 24
-  NE6, 4, NF6, 0, 3, 4, ND6, 4, NE6, 0, 3, 4, NC6, 4, NB5, 0, 3, 4, NG5, 4, NA5, 0, 3, 4,
-  
-  // Address 48
-  NC6, 4, NF6, 4, NF6, 4, NE6, 4, NC6, 4, ND6, 4, ND6, 4, ND6, 4,
-  NB5, 4, NC6, 4, NC6, 4, NB5, 4, NC6, 4, NB5, 4, NA5, 4, NA5, 4,
-  REPEAT, 48, 0, 24, 0,           NG5, 4, NA5, 0, 3, 4,
-  REPEAT, 48, 0, 32, 0,
-  NC6, 4, NF6, 4, NF6, 4, NF6, 4, NG6, 4, NF6, 4, NE6, 4, NE6, 4,
-  NA5, 4, NC6, 4, NC6, 4, NB5, 4, NG5, 4, NA5, 0, 3, 4,
+  // Address 56
+  NA5, -1, ND5, -2, NAIS5, 15, NAIS5, -2, NA5,   -2, NG5,   15, REST, -2,
+  NG5, -1, NF5, -2, NA5,   15, NA5,   -2, NA5,   -2, NA5,   -2, NG5,  -2, NF5, 15, REST, -2,
+  NA5, -1, NC6, -2, NAIS5, 15, NAIS5, -2, NAIS5, -2, NAIS5, -2, NA5,  -2, NG5, 15, REST, -2,
+  // Address 106
+  NA5, -2, NG5, -2, NA5,   -2, NG5,   -2, NA5,   -1, NA5,   -2, NA5,  -2, NF6, -2, NE6,  -1, ND6, 15,
   
   // Address 126
-  REPEAT, 0, 0, 24, 0,
-  REPEAT, 24, 0, 18, 0,                                             ND6, 4, NC6, 0, 3, 4,
-  NE6, 4, REPEAT, 2, 0, 22, 0,
-  // Address 149
-  NE7, 4, NF7, 0, 3, 4, ND7, 4, NE7, 0, 3, 4, NC7, 4, NB6, 0, 3, 4, NG6, 4, NA6, 0, 3, 4,
-  // Address 173
-  NF7, 1, NE7, 1, NB6, 1, NC7, 1,
-  NF7, 1, NE7, 4, NF7, 4, NE7, 4, ND7, 4, NC7, 4, NB6, 1,
+  NG5, -2, NA5, -2, NF6,   -2, NE6,   -1, ND6,   15,
+  NG5, -2, NA5, -2, NAIS5, -2, NC6,   -1, NAIS5, 15,
+  NF5, -2, NG5, -2, NA5,   -2, NAIS5, -1, NA5,   -1, NAIS5, -2, NA5, -1,
+  NA5, -2, NA5, -2, NF6,   -2, NE6,   -1, ND6,   15,
   
-  REPEAT, 48, 0, 43, 0,
+  REPEAT, 126, 0, 44, 0,
   
-  NG6, 4,
-  NC7, 2, NC7, 0, 3, 4,
-  // Address 208
-  NC7, 4, NB6, 4, NA6, 4, NG6, 4, NG6, 4,
-  ND7, 2, ND7, 0, 3, 4,
-  REPEAT, 208, 0, 10, 0,
-  NE7, 2, NE7, 0, 3, 4,
-  NE7, 4, NF7, 4, NE7, 4, ND7, 4, NC7, 4, NB6, 0, 3, 4, REST, 0, 3, 4,
-  
-  REPEAT, 126, 0, 47, 0,
-  
-  // Address 258
-  REPEAT, 0, 0, 24, 0,
-  NF6, 1, NE6, 1, NB5, 1, NA5, 1,
-  
-  REPEAT, 2, 1, 13, 0,
+  REPEAT, 8, 0, 43, 0,
 
-  REPEAT, 2, 1, 13, 0,
+  REPEAT, 56, 0, 119, 0,
   
-  REPEAT, 0, 0, 24, 0,
-  REPEAT, 149, 0, 24, 0,
+  // Address 185
+  NA5, -1,
+  // Address 187
+  ND5, -1, ND5, -1, NG5, -2, NF5, -2, NE5, -1,
+  REPEAT, 187, 0, 10, 0,
+  REPEAT, 185, 0, 12, 0,
+  ND6, -1, ND6, -1,
+  
+  REPEAT, 185, 0, 26, 0,
+  
+  REPEAT, 56, 0, 119, 0,
+  
+  REPEAT, 126, 0, 30, 0,
 
-  REPEAT, 126, 0, 47, 0
+  REPEAT, 106, 0, 20, 0
 };
 
 
 /*****************************************************************************************/
-// Song 10: Unity by Alan Walker ft. The Walkers
-const PROGMEM uint8_t SONG_10[] = {
-  NB6, 0, 3, 2, NGIS6, 0, 3, 2, NE7, 4, REST, 4, NDIS7, 0, 3, 2, NAIS6, 0, 3, 2,
+// Song 6: Lovesick by Alan Walker ft. Sophie Simmons
+const PROGMEM uint8_t SONG_6[] = {
+  // Address 0
+  ND5, -2, NE5, 15, NA5, -2, NC6, 15, NA5, -2, NGIS5, 15, NB5, -2, NA5, 15,
+  // Address 16 x24
+  NE5, -2, NF5, 15, ND5, -2, NE5, 15, NC5, -2, NB4,   15, NG4, -2, NA4, 15,
   
-  // Address 20
-  NDIS6, 4, NB6,   2, NAIS6, 4, NGIS6, 2, NFIS6, 4, NGIS6, 2, NFIS6, 4, NDIS6, 2,
-  NDIS6, 4, NFIS6, 2, NDIS6, 4, NCIS6, 2, NB5,   4, NCIS6, 2, NB5,   4, NGIS5, 2,
-  REPEAT, 20, 0, 18, 0,
-            NB6,   2, NAIS6, 4, NAIS6, 2, NGIS6, 4, NB6,   2, NAIS6, 4, NGIS6, 2,
+  // Address 32
+  NC5, -2, NF5, -2, NF5, -2, NE5, -2, NC5, -2, ND5, -2, ND5, -2, ND5, -2,
+  NB4, -2, NC5, -2, NC5, -2, NB4, -2, NC5, -2, NB4, -2, NA4, -2, NA4, -2,
+  REPEAT, 32, 0, 24, 0,               NG4, -2, NA4, 15,
+  REPEAT, 32, 0, 32, 0,
+  NC5, -2, NF5, -2, NF5, -2, NF5, -2, NG5, -2, NF5, -2, NE5, -2, NE5, -2,
+  NA4, -2, NC5, -2, NC5, -2, NB4, -2, NG4, -2, NA4, 15,
   
-  // Address 71
-  LOOP, NGIS6, 5, 4,
-  NGIS6, 0, 2, 5, NFIS6, 0, 2, 5, NB5, 0, 2, 5, NFIS6, 0, 2, 5, NFIS6, 0, 4, 5,
-  NDIS6, 5, NDIS6, 5, NDIS6, 5, NDIS6, 5,           NCIS6, 0, 2, 5,
-  NCIS6, 5, NCIS6, 5, NE6,   5, NDIS6, 5, NB5,   5, NGIS5, 0, 2, 5, REST, 5,
+  // Address 106
+  REPEAT, 0, 0, 16, 0,
+  REPEAT, 16, 0, 12, 0,                                   ND5, -2, NC5, 15,
+  NE5, -2, REPEAT, 2, 0, 14, 0,
+  // Address 127
+  NE6, -2, NF6, 15, ND6, -2, NE6, 15, NC6, -2, NB5, 15, NG5, -2, NA5, 15,
+  // Address 143 x173
+  NF6, 20, NE6, 20, NB5, 20, NC6, 20,
+  NF6, 20, NE6, -2, NF6, -2, NE6, -2, ND6, -2, NC6, -2, NB5, 20,
   
-  REPEAT, 71, 0, 46, 0,                             NGIS6, 0, 2, 5, REST, 5,
+  REPEAT, 32, 0, 41, 0,
   
+  NG5, -2,
+  NC6, -1, NC6, 15,
+  // Address 176
+  NC6, -2, NB5, -2, NA5, -2, NG5, -2, NG5, -2,
+  ND6, -1, ND6, 15,
+  REPEAT, 176, 0, 10, 0,
+  NE6, -1, NE6, 15,
+  NE6, -2, NF6, -2, NE6, -2, ND6, -2, NC6, -2, NB5, 15, REST, -1,
+  
+  REPEAT, 106, 0, 37, 0,
+  
+  // Address 218
+  REPEAT, 0, 0, 16, 0,
+  NF5, 20, NE5, 20, NB4, 20, NA4, 20,
+  
+  REPEAT, 218, 0, 13, 0,
+
+  REPEAT, 218, 0, 13, 0,
+  
+  REPEAT, 0, 0, 16, 0,
+  REPEAT, 127, 0, 16, 0,
+
+  REPEAT, 106, 0, 37, 0
+};
+
+
+/*****************************************************************************************/
+// Song 7: Unity by Alan Walker ft. The Walkers
+const PROGMEM uint8_t SONG_7[] = {
+  NB5, 30, NGIS5, 30, NE6, -2, REST, -2, NDIS6, 30, NAIS5, 30,
+  
+  // Address 12
+  NDIS5, -2, NB5,   -1, NAIS5, -2, NGIS5, -1, NFIS5, -2, NGIS5, -1, NFIS5, -2, NDIS5, -1,
+  NDIS5, -2, NFIS5, -1, NDIS5, -2, NCIS5, -1, NB4,   -2, NCIS5, -1, NB4,   -2, NGIS4, -1,
+  REPEAT, 12, 0, 18, 0,
+             NB5,   -1, NAIS5, -2, NAIS5, -1, NGIS5, -2, NB5,   -1, NAIS5, -2, NGIS5, -1,
+  
+  // Address 63
+  LOOP, NGIS5, 4, 4,
+  NGIS5, 8, NFIS5, 8, NB4, 8, NFIS5, 8, NFIS5, 16,
+  LOOP, NDIS5, 4, 4,                    NCIS5,  8,
+  NCIS5, 4, NCIS5, 4, NE5, 4, NDIS5, 4, NB4,    4, NGIS4, 8, REST, 8,
+  
+  REPEAT, 63, 0, 30, 0,                            NGIS5, 8, REST, 8,
+  
+  // Address 106
+  NB5,   4, NAIS5, 4, NGIS5, 4, NFIS5, 4, NGIS5, 16,
+  NFIS5, 4, NE5,   4, NDIS5, 4, NCIS5, 4, NDIS5, 12,
+  NDIS5, 4, NDIS5, 8, NFIS5, 4, NFIS5, 8,
   // Address 134
-  NB6,   5, NAIS6, 5, NGIS6, 5, NFIS6, 5, NGIS6, 0, 4, 5,
-  NFIS6, 5, NE6,   5, NDIS6, 5, NCIS6, 5, NDIS6, 0, 3, 5,
-  NDIS6, 5, NDIS6, 0, 2, 5, NFIS6, 5, NFIS6, 0, 2, 5,
-  NAIS5, 5, NB5,   5, NCIS6, 5, NB5,   5, NGIS5, 0, 3, 5,
+  NAIS4, 4, NB4,   4, NCIS5, 4, NB4,   4, NGIS4, 12, REST, 4,
   
-  REPEAT, 134, 0, 36, 0,
-  NAIS6, 5, NB6,   5, NCIS7, 5, NB6,   5, NGIS6, 0, 3, 5
+  REPEAT, 106, 0, 28, 0,
+  SHIFT_TONE, 12, REPEAT, 134, 0, 12, 0, SHIFT_TONE, -12
 };
 
 
 /*****************************************************************************************/
-// Song 11: The Spectre by Alan Walker
-const PROGMEM uint8_t SONG_11[] = {
-  NE6,   2, NGIS6, 2, NE7,   1, NB6,   2, NCIS7, 2, NGIS6, 1,
-  NE6,   2, NFIS6, 2, NDIS6, 1, NCIS6, 2, NE6,   2, NCIS6, 1,
+// Song 8: The Spectre by Alan Walker
+const PROGMEM uint8_t SONG_8[] = {
+  NE5, -1, NGIS5, -1, NE6,   20, NB5,   -1, NCIS6, -1, NGIS5, 20,
+  NE5, -1, NFIS5, -1, NDIS5, 20, NCIS5, -1, NE5,   -1, NCIS5, 20,
   
   // Address 24
-  NGIS6, 4, NGIS6, 4, NB6, 4, NCIS7, 0, 3, 4, NCIS7, 2, NB6, 2, NGIS6, 0, 3, 4, NFIS6, 0, 3, 4,
-  NDIS6, 2, NDIS6, 4, NCIS6, 2, NB5, 2, NGIS5, 0, 3, 4,
-  REPEAT, 24, 0, 22, 0,
-  NCIS6, 4, NDIS6, 2, NDIS6, 4, NFIS6, 2, NDIS6, 4, NE6, 0, 3, 4,
+  NGIS5, -2, NGIS5, -2, NB5,   -2, NCIS6, 15, NCIS6, -1, NB5, -1, NGIS5, 15, NFIS5, 15,
+  NDIS5, -1, NDIS5, -2, NCIS5, -1, NB4,   -1, NGIS4, 15,
+  REPEAT, 24, 0, 16, 0,
+  NCIS5, -2, NDIS5, -1, NDIS5, -2, NFIS5, -1, NDIS5, -2, NE5, 15,
   
-  // Address 77
-  NGIS6, 4, NE7, 4, NDIS7, 4, NCIS7, 4, NB6, 4,
-  NCIS7, 1, NB6, 0, 3, 4, NGIS6, 1,
-  NGIS6, 4, NFIS6, 2, NFIS6, 4, NA6,   2, NFIS6, 4, NGIS6, 0, 3, 4,
-  REPEAT, 77, 0, 22, 0,
-  // Address 114
-                      NE6,   4, NDIS6, 2, NB5,   4, NCIS6, 0, 3, 4,
+  // Address 67
+  NGIS5, -2, NE6,   -2, NDIS6, -2, NCIS6, -2, NB5,   -2,
+  NCIS6, 20, NB5,   15, NGIS5, 20,
+  NGIS5, -2, NFIS5, -1, NFIS5, -2, NA5,   -1, NFIS5, -2, NGIS5, 15,
+  REPEAT, 67, 0, 20, 0,
+  // Address 100
+                        NE5,   -2, NDIS5, -1, NB4,   -2, NCIS5, 15,
   
-  // Address 124
-  LOOP, NGIS6, 4, 3, NGIS6, 2,
-                      NFIS6, 4, NE6,   2, NB6,   4, NB6,   0, 3, 4,
-  NE6,   4, NFIS6, 2, NE6,   4, NFIS6, 2, NA6,   4, NGIS6, 0, 3, 4,
-  REPEAT, 124, 0, 16, 0,
-  // Address 159
-  NGIS6, 4, NFIS6, 2, REPEAT, 114, 0, 10, 0,
+  // Address 108
+  LOOP, NGIS5, -2, 3,   NGIS5, -1,
+                        NFIS5, -2, NE5,   -1, NB5,   -2, NB5,   15,
+  NE5,   -2, NFIS5, -1, NE5,   -2, NFIS5, -1, NA5,   -2, NGIS5, 15,
+  REPEAT, 108, 0, 14, 0,
+  // Address 139
+  NGIS5, -2, NFIS5, -1, REPEAT, 100, 0, 8, 0,
   
-  // Address 168
-  NB5,   4, NCIS6, 2,
-  NE6,   4, NGIS6, 4, NE7,   2,
-  NE7,   8, NDIS7, 8, NB6,   4, NCIS7, 2,
-  NE7,   4, NCIS7, 4, NA6,   1,
-  NGIS6, 2,
-  NGIS6, 4, NFIS6, 4, NE6,   2,
-  NCIS7, 8, NA6,   8, NGIS6, 8, NE6,   8, NFIS6, 2,
-  NE6,   4, NFIS6, 4, NDIS6, 0, 3, 4,
+  // Address 148
+  NB4,   -2, NCIS5, -1,
+  NE5,   -2, NGIS5, -2, NE6,   -1,
+  NE6,   -4, NDIS6, -4, NB5,   -2, NCIS6, -1,
+  NE6,   -2, NCIS6, -2, NA5,   20,
+  NGIS5, -1,
+  NGIS5, -2, NFIS5, -2, NE5,   -1,
+  NCIS6, -3, NA5,   -4, NGIS5, -4, NE5,   -4, NFIS5, -1,
+  NE5,   -2, NFIS5, -2, NDIS5, 15,
   
-  REPEAT, 168, 0, 42, 0,
+  REPEAT, 148, 0, 42, 0,
   REST_FACTOR, 50,
-  LOOP, NFIS6, 3, 3, NGIS6, 3, NE6, 3, NE6, 3, NDIS6, 3, NDIS6, 3, NCIS6, 0, 2, 3,
+  LOOP, NFIS5, 7, 3, NGIS5, 7, NE5, 7, NE5, 7, NDIS5, 7, NDIS5, 7, NCIS5, 17,
   REST_FACTOR, 20,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
   
-  REPEAT, 24, 0, 100, 0,
+  REPEAT, 24, 0, 84, 0,
   
   REST_FACTOR, 50,
-  // Address 262
-  LOOP, NGIS6, 4, 5, NFIS6, 4, NE6, 4, NE6, 4, LOOP, NB6, 4, 4,
-  NE6, 4, NFIS6, 4, NFIS6, 4, NE6, 4, NFIS6, 4, NFIS6, 4, NA6, 4, LOOP, NGIS6, 4, 3,
-  REPEAT, 6, 1, 14, 0,
+  // Address 238
+  LOOP, NGIS5, -2, 5, NFIS5, -2, NE5, -2, NE5, -2, LOOP, NB5, -2, 4,
+  NE5, -2, NFIS5, -2, NFIS5, -2, NE5, -2, NFIS5, -2, NFIS5, -2, NA5, -2, LOOP, NGIS5, -2, 3,
+  REPEAT, 238, 0, 14, 0,
   REST_FACTOR, 20,
-  REPEAT, 159, 0, 59, 0,
-  REPEAT, 168, 0, 42, 0,
-  REPEAT, 114, 0, 10, 0,
-  REPEAT, 168, 0, 10, 0,
-  REPEAT, 168, 0, 10, 0,
-  // Address 326
-  REPEAT, 172, 0, 6, 0,
-  REPEAT, 172, 0, 6, 0,
-  REPEAT, 172, 0, 6, 0,
-  REPEAT, 70, 1, 10, 0,
-  // Address 346
-  NGIS6, 4, NE7,   2,
-  NGIS6, 4, NE7,   2,
-  NGIS6, 4, NE7,   2,
-  REPEAT, 90, 1, 8, 0,
+  REPEAT, 139, 0, 57, 0,
+  REPEAT, 148, 0, 42, 0,
+  REPEAT, 100, 0, 8, 0,
+  REPEAT, 148, 0, 10, 0,
+  REPEAT, 148, 0, 10, 0,
+  // Address 302 (46, 1)
+  REPEAT, 152, 0, 6, 0,
+  REPEAT, 152, 0, 6, 0,
+  REPEAT, 152, 0, 6, 0,
+  REPEAT, 46, 1, 10, 0,
+  // Address 322 (66, 1)
+  NGIS5, -2, NE6,   -1,
+  NGIS5, -2, NE6,   -1,
+  NGIS5, -2, NE6,   -1,
+  REPEAT, 66, 1, 8, 0,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
   
-  REPEAT, 168, 0, 50, 0,
+  REPEAT, 148, 0, 48, 0,
 
-  NE6, 4, NDIS7, 4, NB6, 4, NCIS7, 2,
-  // Address 381
-  NB6, 4, NGIS6, 4, NGIS7, 2,
-  NB6, 8, NGIS6, 8, NB6, 8, NGIS6, 8, NE7, 2,
-  NE7, 4, NFIS7, 4, NCIS7, 1,
-  NB6, 2,
-  NE7, 4, NFIS7, 4, NDIS7, 2,
-  NGIS7, 8, NFIS7, 8, NE7, 8, NDIS7, 8, NE7, 2,
-  NE7, 4, NFIS7, 4, NDIS7, 0, 3, 4,
+  NE5, -2, NDIS6, -2, NB5, -2, NCIS6, -1,
+  // Address 357 (101, 1)
+  NB5,   -2, NGIS5, -2, NGIS6, -1,
+  NB5,   -4, NGIS5, -4, NB5,   -4, NGIS5, -4, NE6, -1,
+  NE6,   -2, NFIS6, -2, NCIS6, 20,
+  NB5,   -1,
+  NE6,   -2, NFIS6, -2, NDIS6, -1,
+  NGIS6, -4, NFIS6, -4, NE6,   -4, NDIS6, -4, NE6, -1,
+  NE6,   -2, NFIS6, -2, NDIS6, 15,
   
-  REPEAT, 125, 1, 44, 0, NDIS7, 0, 2, 1
+  REPEAT, 101, 1, 44, 0, NDIS6, 40
+};
+
+
+/*****************************************************************************************/
+// Song 9: Alone by Alan Walker ft. Tove Stryrke
+const PROGMEM uint8_t SONG_9[] = {
+  // Address 0
+  NG5, 20, NF5, 20, NDIS5, 20, NAIS4, 20, ND5, 20,
+  // Address 10
+  ND5, -3, NDIS5, -3, ND5, -3, NC5, 20,
+  ND5, -1, NF5, -1,
+  REPEAT, 0, 0, 10, 0,
+  ND5, -4, ND5, -4, NDIS5, -4, ND5, -4, NC5, 20,
+  // Address 37
+  NG5, -1, NA5, -1,
+  // Address 41
+                   LOOP, NAIS5, -2, 3, NA5, -4, NA5, -2, NG5, -1,
+  ND5,   -2, LOOP, NF5,   -2, 3, NG5, -4, NF5, -2, ND5, -1,
+  NC5,   -2, LOOP, NAIS4, -2, 3, ND5, -4, NF5, -1,
+  NAIS4, -2, LOOP, NA4,   -2, 3, ND5, -4, NF5, -1,
+  
+  NF5,   -2, REPEAT, 41, 0, 32, 0,
+  // Address 90
+  NF5, -2, REST_FACTOR, 60, NF5, -1, NG5, -1,  NAIS5, -1,
+  REST_FACTOR, 20, NA5, -2, NAIS5, -2, NG5, -1,
+  // Address 108
+  NG5,   -3, REST, -3, ND5,   -6, ND5,   -6, REST,  -3, NF5,  -3, REST, -3,
+  // Address 122
+  ND6,   -4, NC6,  -4, ND6,   -4, NC6,   -4, ND6,   -4, REST, -4,
+  NG5,   -3, REST, -3, NDIS5, -6, NDIS5, -6, REST,  -3, NF5,  -3, REST, -3,
+  // Address 148
+  NDIS6, -4, NC6,  -4, NDIS6, -4, NC6,   -4, NDIS6, -4, REST, -4,
+  NF5,   -3, REPEAT, 110, 0, 24, 0,
+  // Address 167 x269 (13, 1)
+  REPEAT, 90, 0, 18, 0,
+  // Address 172 x274 (18, 1)
+  NAIS5, -3, REST, -3, NA5,   -6, NA5,   -6, REST, -3, ND5,   -3,
+  REPEAT, 120, 0, 14, 0,
+  // Address 189
+  NDIS6, -3, REST, -3, ND6,   -6, ND6,   -6, REST, -3, NAIS5, -3,
+  REPEAT, 146, 0, 16, 0,
+             REST, -3, NA5,   -6, NA5,   -6, REST, -3, NAIS5, -3,
+  REPEAT, 120, 0, 14, 0,
+  
+  REPEAT, 90, 0, 18, 0,
+  
+  // Address 226
+  REST_FACTOR, 50,
+  NG5, -2, ND5, -2, NF5, -2, ND5, -2,
+  NG5, -4, ND5, -4, NF5, -4, ND5, -4, NG5, -2, NG5, -2,
+  // Address 248 x370 (114, 1)
+  NG5,   -1, NG5,   -1, NF5,   -1, NF5, -1, NDIS5, -1,
+  NDIS5, -1, NAIS4, -1, NAIS4, -1, ND5, -1, ND5,   -1,
+  ND5,   -3, NDIS5, -3, ND5,   -3, NC5, -1, NC5,   -1,
+  ND5,   -1, NF5,   -1, REPEAT, 248, 0, 30, 0,
+  
+  // Address 287 (31, 1)
+  NF5, -1, ND5, -2, NAIS5, -2, NA5, -2, NG5, 15,
+  REPEAT, 31, 1, 10, 0,
+  REPEAT, 31, 1, 8, 0,
+  NAIS5, -1, NF5, -1, NAIS5, -1, NC6, -2, NAIS5, -2, NA5, 20,
+  
+  REST_FACTOR, 20, REPEAT, 37, 0, 189, 0,
+  
+  // Address 326 (70, 1)
+  REPEAT, 172, 0, 12, 0, REST, -3,
+  NG5,   -2, NA5,   -2, NAIS5, -4, REST, -4, NDIS5, -2,
+  REPEAT, 189, 0, 12, 0, REST, -3,
+  NAIS5, -2, NAIS5, -2, NA5,   -4, REST, -4, NAIS5, -2,
+  NF5, -3, REPEAT, 206, 0, 10, 0, REST, -3,
+  NAIS5, -2, ND6, -2, NC6, -4, REST, -4,
+  REPEAT, 90, 0, 18, 0,
+  
+  REPEAT, 70, 1, 56, 0
+};
+
+
+/*****************************************************************************************/
+// Song 10: Creatures by Hot Shade ft. Nomi Bontegard
+const PROGMEM uint8_t SONG_10[] = {
+  NG6,   -2,
+  NFIS6, -4, NG6,   -4, NFIS6, -2,
+  NE6,   -4, NFIS6, -4, NE6,   -2,
+  ND6,   -4, NE6,   -4, ND6,   -2,
+  NCIS6, -4, ND6,   -4, NCIS6, 30, REST, -1,
+  REPEAT, 6, 0, 18, 0,
+                        NCIS6, -2,
+  NB5,   -4, NCIS6, -4, NB5,   30, REST, -1,
+  //
+  //  Address 43
+  NB4, -1,
+  REST, -2, NB4, -2, ND5, -1,
+  REST, -2, ND5, -2, NE5, -1,
+  NFIS5, -1, NA4, -1,
+  REST, -1, NFIS5, -1,
+  REST, -2, NE5, -4, NFIS5, -4, NE5, -1,
+  REST, -2, NCIS5, -4, ND5, -4, NB4, 30, REST, -1,
+  //
+  NG4, -2, REPEAT, 43, 0, 18, 0,
+  REST, -2, NA4, -2, REPEAT, 63, 0, 8, 0,
+                             NA5, -1,
+  REST, -2, NFIS5, -4, NA5, -4, NCIS6, 30, REST, -2,
+  //
+  // Address 111
+  NE5, -2, NFIS5, -2, NG5,   -2, NG5,   -2, NFIS5, -2, NE5,   -2, NFIS5, -2, REST, -2,
+  NE5, -2, ND5,   -2, NE5,   -2, NFIS5, -2, NE5,   -2, ND5,   -2, NE5,   -2, REST, -2,
+  ND5, -2, NE5,   -2, NFIS5, -1, NA5,   -1, NE5,   -1, NFIS5, -1, NB4,   20, REST, -1,
+  //
+  // Address 159
+  REPEAT, 111, 0, 42, 0,                               ND5,   -1, NB4,   20, REST, -1,
+  //
+  // Address 170
+  NE5,   -1, NB5, -1, NA5, -1, ND6,   -1, NCIS6, -1, NE5, -1, NE5,  15,
+  NE5,   -2, ND6, -1, NE6, -1, NCIS6, -1, NA5,   -1, NB5, 30, REST, -1,
+  //
+  REPEAT, 170, 0, 8, 0,        NA5,   -2, NCIS6, -2, NE5, -1, NE5,  15,
+  NFIS5, -2, NG5, -1, NA5, -1, NFIS5, -1, ND5,   -1, NE5, -2, NFIS5, -2, NG5, -2, ND6, -2, NB5, 20,
+  //
+  // Address 231
+  REPEAT, 0, 0, 43, 0,
+  REPEAT, 0, 0, 231, 0,
+  REPEAT, 0, 0, 43, 0,
+  REPEAT, 0, 0, 43, 0,
+  REPEAT, 170, 0, 61, 0
 };
 
 
@@ -701,8 +682,7 @@ const PROGMEM uint8_t * const SONG_BUFFER[] = {
   SONG_7,
   SONG_8,
   SONG_9,
-  SONG_10,
-  SONG_11
+  SONG_10
 };
 
 
@@ -716,22 +696,34 @@ const PROGMEM uint16_t SONG_SIZE[] = {
   sizeof(SONG_7),
   sizeof(SONG_8),
   sizeof(SONG_9),
-  sizeof(SONG_10),
-  sizeof(SONG_11)
+  sizeof(SONG_10)
+};
+
+
+const PROGMEM uint16_t SONG_TEMPO[] = {
+  128,  // Song  1
+  90,   // Song  2
+  106,  // Song  3
+  104,  // Song  4
+  147,  // Song  5
+  123,  // Song  6
+  115,  // Song  7
+  128,  // Song  8
+  97,   // Song  9
+  114   // Song 10
 };
 
 
 const PROGMEM char SONG_1_TITLE [] = { "Pirates of The Carribean by Alan Walker" };
 const PROGMEM char SONG_2_TITLE [] = { "Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri" };
-const PROGMEM char SONG_3_TITLE [] = { "Hark The Herald Angels Sing" };
-const PROGMEM char SONG_4_TITLE [] = { "Phantom by Dimitri Vangelis & Wyman" };
-const PROGMEM char SONG_5_TITLE [] = { "Monody (Radio Edit) by TheFatRat ft. Laura Brehm" };
-const PROGMEM char SONG_6_TITLE [] = { "He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)" };
-const PROGMEM char SONG_7_TITLE [] = { "Hello World by Alan Walker ft. Torine" };
-const PROGMEM char SONG_8_TITLE [] = { "Catch Me If You Can by Alan Walker ft. Sorana" };
-const PROGMEM char SONG_9_TITLE [] = { "Lovesick by Alan Walker ft. Sophie Simmons" };
-const PROGMEM char SONG_10_TITLE[] = { "Unity by Alan Walker ft. The Walkers" };
-const PROGMEM char SONG_11_TITLE[] = { "The Spectre by Alan Walker" };
+const PROGMEM char SONG_3_TITLE [] = { "He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)" };
+const PROGMEM char SONG_4_TITLE [] = { "Hello World by Alan Walker ft. Torine" };
+const PROGMEM char SONG_5_TITLE [] = { "Catch Me If You Can by Alan Walker ft. Sorana" };
+const PROGMEM char SONG_6_TITLE [] = { "Lovesick by Alan Walker ft. Sophie Simmons" };
+const PROGMEM char SONG_7_TITLE [] = { "Unity by Alan Walker ft. The Walkers" };
+const PROGMEM char SONG_8_TITLE [] = { "The Spectre by Alan Walker" };
+const PROGMEM char SONG_9_TITLE [] = { "Alone by Alan Walker ft. Tove Stryrke" };
+const PROGMEM char SONG_10_TITLE[] = { "Creatures by Hot Shade ft. Nomi Bontegard" };
 
 
 const PROGMEM char * const SONG_TITLE[] = {
@@ -744,21 +736,19 @@ const PROGMEM char * const SONG_TITLE[] = {
   SONG_7_TITLE,
   SONG_8_TITLE,
   SONG_9_TITLE,
-  SONG_10_TITLE,
-  SONG_11_TITLE
+  SONG_10_TITLE
 };
 
 
 const PROGMEM uint8_t TONE_RANGE[] = {
   ND5,   NAIS6,  // Song  1
-  NDIS5, NDIS7,  // Song  2
-  NC6,   ND7,    // Song  3
-  NF4,   NGIS7,  // Song  4
-  NB5,   NDIS7,  // Song  5
-  NA5,   ND7,    // Song  6
-  NGIS5, NF7,    // Song  7
-  ND6,   NF7,    // Song  8
-  NG5,   NF7,    // Song  9
-  NGIS5, NE7,    // Song 10
-  NB5,   NGIS7   // Song 11
+  NDIS4, NDIS6,  // Song  2
+  NA4,   ND6,    // Song  3
+  NGIS4, NF6,    // Song  4
+  ND5,   NF6,    // Song  5
+  NG4,   NF6,    // Song  6
+  NGIS4, NF6,    // Song  7
+  NB4,   NGIS6,  // Song  8
+  NA4,   NDIS6,  // Song  9
+  NG4,   NG6     // Song 10
 };  // lowest tone, highest tone
