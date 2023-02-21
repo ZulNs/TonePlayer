@@ -34,20 +34,24 @@ void onEndOfSong() {
   static int songCounter;
   const uint8_t * songBuffer;
   uint16_t songSize;
+  uint16_t songBPM;
   if (songCounter == 0) {
     songBuffer = SONG_1;
     songSize = sizeof(SONG_1);
+    songBPM = SONG_1_BPM;
   }
   else if (songCounter == 1) {
     songBuffer = SONG_2;
     songSize = sizeof(SONG_2);
+    songBPM = SONG_2_BPM;
   }
   else {
     songBuffer = SONG_3;
     songSize = sizeof(SONG_3);
+    songBPM = SONG_3_BPM;
   }
   // SONG_1, SONG_2, & SONG_3 are declared in file "song.h"
-  top.setSong(songBuffer, songSize);
+  top.setSong(songBuffer, songSize, songBPM);
   top.play();
   songCounter = (songCounter + 1) % 3;
-} 
+}
