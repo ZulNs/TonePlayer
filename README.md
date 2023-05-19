@@ -11,11 +11,11 @@ A library for playing melody in background process using the builtin `tone()` fu
 #include <TonePlayer.h>
 
 const PROGMEM uint8_t SONG[] = {
-  NFIS6, 5, NFIS6, 5, ND6,   5, NB5,   5, REST,  5, NB5,   5, REST,  5, NE6,   5,
-  REST,  5, NE6,   5, REST,  5, NE6,   5, NGIS6, 5, NGIS6, 5, NA6,   5, NB6,   5,
-  NA6,   5, NA6,   5, NA6,   5, NE6,   5, REST,  5, ND6,   5, REST,  5, NFIS6, 5,
-  REST,  5, NFIS6, 5, REST,  5, NFIS6, 5, NE6,   5, NE6,   5, NFIS6, 5, NE6,   5,
-  REPEAT, 0, 0, 64, 0,
+  NFIS6, -2, NFIS6, -2, ND6,  -2, NB5,   -2, REST,  -2, NB5,   -2, REST,  -2, NE6,   -2,
+  REST,  -2, NE6,   -2, REST, -2, NE6,   -2, NGIS6, -2, NGIS6, -2, NA6,   -2, NB6,   -2,
+  NA6,   -2, NA6,   -2, NA6,  -2, NE6,   -2, REST,  -2, ND6,   -2, REST,  -2, NFIS6, -2,
+  REST,  -2, NFIS6, -2, REST, -2, NFIS6, -2, NE6,   -2, NE6,   -2, NFIS6, -2, NE6,   -2,
+  REPEAT, 0, 0, 64, 0
 };
 
 #ifdef ESP32
