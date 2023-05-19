@@ -9,7 +9,7 @@
 
 #define SONG_1_BPM 147
 
-const PROGMEM uint8_t SONG_1[] = {
+const uint8_t SONG_1[] PROGMEM = {
   NA5, 35, NAIS5, 35, NG5, 35, NA5, 35,
   
   // Address 8
@@ -65,7 +65,7 @@ const PROGMEM uint8_t SONG_1[] = {
 
 #define SONG_2_BPM 123
 
-const PROGMEM uint8_t SONG_2[] = {
+const uint8_t SONG_2[] PROGMEM = {
   // Address 0
   ND5, -2, NE5, 15, NA5, -2, NC6, 15, NA5, -2, NGIS5, 15, NB5, -2, NA5, 15,
   // Address 16 x24
@@ -122,7 +122,7 @@ const PROGMEM uint8_t SONG_2[] = {
 
 #define SONG_3_BPM 115
 
-const PROGMEM uint8_t SONG_3[] = {
+const uint8_t SONG_3[] PROGMEM = {
   NB5, 30, NGIS5, 30, NE6, -2, REST, -2, NDIS6, 30, NAIS5, 30,
   
   // Address 12

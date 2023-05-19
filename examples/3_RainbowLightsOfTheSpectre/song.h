@@ -8,7 +8,7 @@
 
 #define BPM 128
 
-const PROGMEM uint8_t SONG[] = {
+const uint8_t SONG[] PROGMEM = {
   NE5, -1, NGIS5, -1, NE6,   20, NB5,   -1, NCIS6, -1, NGIS5, 20,
   NE5, -1, NFIS5, -1, NDIS5, 20, NCIS5, -1, NE5,   -1, NCIS5, 20,
   

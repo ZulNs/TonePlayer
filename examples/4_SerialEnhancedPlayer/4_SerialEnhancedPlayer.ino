@@ -15,6 +15,8 @@
  *    <  : Playback the previous song
  *    +  : Increases the playback speed (max 2.00x)
  *    -  : Decreases the playback speed (min 0.50x)
+ *    )  : Increases the volume (max 100)
+ *    (  : Decreases the volume (min 0)
  *    ]  : Increases the tone shift by one pitch
  *    [  : Decreases the tone shift by one pitch
  *    *  : Toggles RGB LED indicator on/off
@@ -25,32 +27,88 @@
  *    ?  or  h  : Prints help
  * 
  * Playlist:
- * Song  1: Pirates of The Carribean by Alan Walker
- * Song  2: Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri
- * Song  3: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
- * Song  4: Hello World by Alan Walker ft. Torine
- * Song  5: Catch Me If You Can by Alan Walker ft. Sorana
- * Song  6: Lovesick by Alan Walker ft. Sophie Simmons
- * Song  7: Unity by Alan Walker ft. The Walkers
- * Song  8: The Spectre by Alan Walker
- * Song  9: Alone by Alan Walker ft. Tove Stryrke
- * Song 10: Creatures by Hot Shade ft. Nomi Bontegard
+ *    Song  1: Pirates of The Carribean by Alan Walker
+ *    Song  2: Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri
+ *    Song  3: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
+ *    Song  4: Hello World by Alan Walker ft. Torine
+ *    Song  5: Catch Me If You Can by Alan Walker ft. Sorana
+ *    Song  6: Lovesick by Alan Walker ft. Sophie Simmons
+ *    Song  7: Unity by Alan Walker ft. The Walkers
+ *    Song  8: The Spectre by Alan Walker
+ *    Song  9: Alone by Alan Walker ft. Tove Stryrke
+ *    Song 10: Creatures by Hot Shade ft. Nomi Bontegard
+ * 
+ * The circuit:
+ *                                    _______________________________________________
+ *                                   | Arduino Uno | Arduino Mega |        |         |
+ *                                   |-------------|--------------| ESP32  | ESP8266 |
+ *                                   | Norm | Mod  | Norm | Mode  |        |         |
+ *                                   |------|------|------|-------|--------|---------|
+ *     Buzzer |   + |----------------| 13   | 9    | 13   | 11    | GPIO4  | GPIO16  |
+ *            |   - |----------------| GND  | GND  | GND  | GND   | GND    | GND     |
+ *                                   |      |      |      |       |        |         |
+ *            |   R |-----|R180|-----| 11   | 11   | 8    | 8     | GPIO19 | GPIO5   |
+ *    RGB LED | Com |----------------| GND  | GND  | GND  | GND   | GND    | GND     |
+ *            |   G |-----|R180|-----| 9    | 6    | 7    | 7     | GPIO18 | GPIO4   |
+ *            |   B |-----|R100|-----| 3    | 5    | 6    | 6     | GPIO5  | GPIO14  |
+ *                                   |------|------|------|-------|--------|---------|
+ * 
  * 
  * By ZulNs, @Gorontalo, January 2023
 */
 
 
+// This option only affect on the AVR MCU based board
+#define USE_MODIFIED_TONE_GENERATOR
+
 #include <TonePlayer.h>
 #include "song.h"
 
-// These below pins must be support PWM output (3, 5, 6, 9, 10, and 11 on UNO board).
-// Avoid using pins 3 and 11 on boards other than the Mega since the use of tone() function
-// (which used in this library) will interfere with PWM output on both pins.
-const uint8_t  RGB_RED_PIN   = 10;
-const uint8_t  RGB_GREEN_PIN = 9;
-const uint8_t  RGB_BLUE_PIN  = 6;
+#ifdef ESP32
+#define SPEAKER_PIN                 4
+#define RGB_RED_PIN                 19
+#define RGB_GREEN_PIN               18
+#define RGB_BLUE_PIN                5
+#define RGB_PWM_FREQUENCY           1000
+#define RGB_PWM_DUTY_RESOLUTION_BIT LEDC_TIMER_8_BIT
+#define RGB_RED_PWM_CHANNEL         LEDC_CHANNEL_2
+#define RGB_GREEN_PWM_CHANNEL       LEDC_CHANNEL_3
+#define RGB_BLUE_PWM_CHANNEL        LEDC_CHANNEL_4
+#define analogWrite                 ESP32_analog_write
+#elif defined(ESP8266)
+#define SPEAKER_PIN                 16
+#define RGB_RED_PIN                 5
+#define RGB_GREEN_PIN               4
+#define RGB_BLUE_PIN                14
+#elif defined(__AVR_ATmega328P__) and defined(USE_MODIFIED_TONE_GENERATOR)
+//      SPEAKER_PIN must be pin     9  (OC1A)
+#define RGB_RED_PIN                 11
+#define RGB_GREEN_PIN               6
+#define RGB_BLUE_PIN                5
+#elif defined(__AVR_ATmega328P__)
+#define SPEAKER_PIN                 13
+#define RGB_RED_PIN                 11
+#define RGB_GREEN_PIN               9
+#define RGB_BLUE_PIN                3
+#elif defined(__AVR_ATmega2560__) and defined(USE_MODIFIED_TONE_GENERATOR)
+//      SPEAKER_PIN must be pin     11 (OC1A)
+#define RGB_RED_PIN                 8
+#define RGB_GREEN_PIN               7
+#define RGB_BLUE_PIN                6
+#elif defined(__AVR_ATmega2560__)
+#define SPEAKER_PIN                 13
+#define RGB_RED_PIN                 8
+#define RGB_GREEN_PIN               7
+#define RGB_BLUE_PIN                6
+#endif  // ESP32
 
-const PROGMEM char SKETCH_TITLE[] = {
+#if defined(ESP32) or defined(ESP8266)
+#define pgm_read_pointer pgm_read_dword
+#else
+#define pgm_read_pointer pgm_read_word
+#endif
+
+const char SKETCH_TITLE[] PROGMEM = {
   "*************************************\n"
   "*                                   *\n"
   "*  Serial Advanced Player by ZulNs  *\n"
@@ -58,7 +116,7 @@ const PROGMEM char SKETCH_TITLE[] = {
   "*************************************\n"
 };
 
-const PROGMEM char HELP[] = {
+const char HELP[] PROGMEM = {
   "\n"
   "Single character command set (send via Serial panel):\n"
   " =  : Plays the current song\n"
@@ -68,6 +126,10 @@ const PROGMEM char HELP[] = {
   " <  : Playback the previous song\n"
   " +  : Increases the playback speed (max 2.00x)\n"
   " -  : Decreases the playback speed (min 0.50x)\n"
+#if defined(USE_MODIFIED_TONE_GENERATOR) or defined(ESP32)
+  " )  : Increases the volume (max 100)\n"
+  " (  : Decreases the volume (min 0)\n"
+#endif
   " ]  : Increases the tone shift by one pitch\n"
   " [  : Decreases the tone shift by one pitch\n"
   " *  : Toggles RGB LED indicator on/off\n"
@@ -78,31 +140,80 @@ const PROGMEM char HELP[] = {
   " ?  or  h  : Prints help (this page)\n"
 };
 
-TonePlayer top;  // If omitted, pin 13 is the default pin the passive buzzer connected to.
-//TonePlayer top(13);  // This line has same effect with above line.
-
-uint16_t lowestFreq, highestFreq, freqRange;
+FREQ_DATA_TYPE lowestFreq, highestFreq, freqRange;
 uint16_t tempo;
 float currentSpeed = 1.0;
 int8_t currentSong, toneShift;
 bool isPlaying, isPaused, isContinousMode, isRepeatMode, isDisplayIndicator;
 
-void setup() {
-  Serial.begin(9600);
-  while (!Serial);
+#if defined(USE_MODIFIED_TONE_GENERATOR) or defined(ESP32)
+uint8_t volume = 100;
+#endif
 
+#ifdef ESP32
+ledc_timer_config_t   ledcTimer1, ledcTimer2;
+ledc_channel_config_t redChannel, greenChannel, blueChannel;
+#endif
+
+#ifdef USE_MODIFIED_TONE_GENERATOR
+TonePlayer top;
+#else
+TonePlayer top(SPEAKER_PIN);
+#endif  // USE_MODIFIED_TONE_GENERATOR
+
+void setup() {
+#ifdef ESP32
+  ledcTimer1.speed_mode = LEDC_HIGH_SPEED_MODE;
+  ledcTimer1.duty_resolution = RGB_PWM_DUTY_RESOLUTION_BIT;
+  ledcTimer1.timer_num = LEDC_TIMER_1;
+  ledcTimer1.freq_hz = RGB_PWM_FREQUENCY;
+  
+  ledcTimer2.speed_mode = LEDC_HIGH_SPEED_MODE;
+  ledcTimer2.duty_resolution = RGB_PWM_DUTY_RESOLUTION_BIT;
+  ledcTimer2.timer_num = LEDC_TIMER_2;
+  ledcTimer2.freq_hz = RGB_PWM_FREQUENCY;
+  
+  redChannel.gpio_num = RGB_RED_PIN;
+  redChannel.speed_mode = LEDC_HIGH_SPEED_MODE;
+  redChannel.channel = RGB_RED_PWM_CHANNEL;
+  redChannel.intr_type = LEDC_INTR_DISABLE;
+  redChannel.timer_sel = LEDC_TIMER_1;
+  redChannel.hpoint = 0;
+  
+  greenChannel.gpio_num = RGB_GREEN_PIN;
+  greenChannel.speed_mode = LEDC_HIGH_SPEED_MODE;
+  greenChannel.channel = RGB_GREEN_PWM_CHANNEL;
+  greenChannel.intr_type = LEDC_INTR_DISABLE;
+  greenChannel.timer_sel = LEDC_TIMER_1;
+  greenChannel.hpoint = 0;
+  
+  blueChannel.gpio_num = RGB_BLUE_PIN;
+  blueChannel.speed_mode = LEDC_HIGH_SPEED_MODE;
+  blueChannel.channel = RGB_BLUE_PWM_CHANNEL;
+  blueChannel.intr_type = LEDC_INTR_DISABLE;
+  blueChannel.timer_sel = LEDC_TIMER_2;
+  blueChannel.hpoint = 0;
+  
+  ledc_timer_config(&ledcTimer1);
+  ledc_timer_config(&ledcTimer2);
+#endif
+  
   top.setOnToneCallback(onTone);
   // The onTone() function will be called everytime a tone begins to sound.
   top.setOnMuteCallback(onMute);
-  // While the onMute() function wiil be called when the buzzer begins to be muted. 
+  // While the onMute() function will be called when the buzzer begins to be muted. 
   top.setOnEndOfSongCallback(onEndOfSong);
   // The onEndOfSong() function will be called everytime the end of song has reached.
+  
+  Serial.begin(115200);
+  while (!Serial);
+  
   Serial.println((const __FlashStringHelper *)SKETCH_TITLE);
   delay(1000);
   printHelp();
-  delay(2000);
+  delay(1000);
   printPlaylist();
-  delay(2000);
+  delay(1000);
   isDisplayIndicator = true;
   playSong();
   printStatus();
@@ -113,8 +224,8 @@ void loop() {
   checkSerialInput();
 }
 
-void onTone(uint16_t freq) {  // This function will be called by TonePlayer object with one
-							                // argument as the frequency of the recently sounded tone.
+void onTone(FREQ_DATA_TYPE freq) {  // This function will be called by TonePlayer object with one
+							                      // argument as the frequency of the recently sounded tone.
   if (!isDisplayIndicator) {
     return;
   }
@@ -127,7 +238,7 @@ void onTone(uint16_t freq) {  // This function will be called by TonePlayer obje
     freq = highestFreq;
   }
   freq -= lowestFreq;
-  norm = (float)freq / freqRange * 5.0 * 255.0;
+  norm = freq / (float)freqRange * 5.0 * 255.0;
   // Uses 5.0 value instead of 6.0 to put the violet lights on top of the rainbow spectrum
   val = norm / 255;
   grade = norm % 255;
@@ -161,18 +272,36 @@ void onTone(uint16_t freq) {  // This function will be called by TonePlayer obje
       red   = 255;
       break;
   }
+#ifdef ESP32
+  redChannel.duty   = red;
+  greenChannel.duty = green;
+  blueChannel.duty  = blue;
+  ledc_channel_config(&redChannel);
+  ledc_channel_config(&greenChannel);
+  ledc_channel_config(&blueChannel);
+#else
   analogWrite(RGB_RED_PIN,   red);
   analogWrite(RGB_GREEN_PIN, green);
   analogWrite(RGB_BLUE_PIN,  blue);
+#endif
 }
 
 void onMute() {
   if (!isDisplayIndicator) {
     return;
   }
+#ifdef ESP32
+  redChannel.duty   = 0;
+  greenChannel.duty = 0;
+  blueChannel.duty  = 0;
+  ledc_channel_config(&redChannel);
+  ledc_channel_config(&greenChannel);
+  ledc_channel_config(&blueChannel);
+#else
   analogWrite(RGB_RED_PIN,   0);
   analogWrite(RGB_GREEN_PIN, 0);
   analogWrite(RGB_BLUE_PIN,  0);
+#endif
 }
 
 void onEndOfSong() {
@@ -187,9 +316,9 @@ void onEndOfSong() {
 }
 
 void playSong() {
-  const uint8_t * songBuf = (const uint8_t *)pgm_read_word_near(SONG_BUFFER + currentSong);
-  uint16_t noteSz = pgm_read_word_near(SONG_SIZE + currentSong);
-  tempo = pgm_read_word_near(SONG_TEMPO + currentSong);
+  const uint8_t * songBuf = (const uint8_t *)pgm_read_pointer(SONG_BUFFER + currentSong);
+  uint16_t noteSz = pgm_read_word(SONG_SIZE + currentSong);
+  tempo = pgm_read_word(SONG_TEMPO + currentSong);
   top.setSong(songBuf, noteSz, tempo * currentSpeed);
   top.setRestFactor(20);  // Set to default rest factor
   top.play();
@@ -263,24 +392,46 @@ void checkSerialInput() {
           printSpeed();
         }
         break;
+#if defined(USE_MODIFIED_TONE_GENERATOR) or defined(ESP32)
+      case ')':
+        ++volume;
+        if (volume > 100) {
+          volume = 100;
+        }
+        else {
+          top.setVolume(volume / 100.0 * 255.0);
+          printVolume();
+        }
+        break;
+      case '(':
+        --volume;
+        if (volume > 100) {
+          volume = 0;
+        }
+        else {
+          top.setVolume(volume / 100.0 * 255.0);
+          printVolume();
+        }
+        break;
+#endif
+      case ']':
+        top.setToneShift(1);
+        ++toneShift;
+        initIndicator();
+        printToneShift();
+        break;
+      case '[':
+        top.setToneShift(-1);
+        --toneShift;
+        initIndicator();
+        printToneShift();
+        break;
       case '*':
         if (isDisplayIndicator) {
           onMute();
         }
         isDisplayIndicator = !isDisplayIndicator;
         printDisplayIndicatorStatus();
-        break;
-      case ']':
-        top.setToneShift(1);
-        toneShift++;
-        initIndicator();
-        printToneShift();
-        break;
-      case '[':
-        top.setToneShift(-1);
-        toneShift--;
-        initIndicator();
-        printToneShift();
         break;
       case 'c':
         isContinousMode = !isContinousMode;
@@ -323,6 +474,9 @@ void printStatus() {
   printRepeatModeStatus();
   printDisplayIndicatorStatus();
   printSpeed();
+#if defined(USE_MODIFIED_TONE_GENERATOR) or defined(ESP32)
+  printVolume();
+#endif
   printToneShift();
   Serial.println();
 }
@@ -340,7 +494,7 @@ void printSongTitle(uint8_t songIdx) {
   Serial.print(F("Song "));
   Serial.print(songIdx + 1);
   Serial.print(F(": "));
-  Serial.println((const __FlashStringHelper *)pgm_read_word_near(SONG_TITLE  + songIdx));
+  Serial.println((const __FlashStringHelper *)pgm_read_pointer(SONG_TITLE  + songIdx));
 }
 
 void printPauseCont() {
@@ -359,6 +513,13 @@ void printSpeed() {
   Serial.println(F("x"));
 }
 
+#if defined(USE_MODIFIED_TONE_GENERATOR) or defined(ESP32)
+void printVolume() {
+  Serial.print(F("Volume: "));
+  Serial.println(volume);
+}
+#endif
+
 void printToneShift() {
   Serial.print(F("Tone shift: "));
   Serial.println(toneShift);
@@ -376,8 +537,8 @@ void printDisplayIndicatorStatus() {
   printOnOffStatus(F("Display indicator"), isDisplayIndicator);
 }
 
-void printOnOffStatus(const __FlashStringHelper * fstr, bool status) {
-  Serial.print(fstr);
+void printOnOffStatus(const __FlashStringHelper * str, bool status) {
+  Serial.print(str);
   Serial.print(F(": "));
   Serial.println(status ? F("ON") : F("OFF"));
 }

@@ -7,7 +7,7 @@
 // Song title: Hello World by Alan Walker ft. Torine
 #define BPM 104
 
-const PROGMEM uint8_t SONG[] = {
+const uint8_t SONG[] PROGMEM = {
   NAIS5, -4, NC6,   -4, REST,  -4, NCIS6, 8,
   // Address 8
   NAIS5, -4, REST,  -4, NCIS6, -2, NDIS6, -4, REST, -4, NC6,   8,

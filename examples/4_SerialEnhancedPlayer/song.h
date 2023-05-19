@@ -18,17 +18,17 @@
 
 /*****************************************************************************************/
 // Song 1: Pirates of The Carribean by Alan Walker
-const PROGMEM uint8_t SONG_1[] = {
+const uint8_t SONG_1[] PROGMEM = {
   REST_FACTOR, 50,
   ND6, -4, NG6, -4,
-  // Address 6 x10
+  // Address 6
   NA6, 20, NAIS6, 20, LOOP, NA6, -2, 4, NG6, 20,
   REST_FACTOR, 0,
   SEQUENCE_TONE, ND4, NA6, 1, -4,
   
   // Address 23
   REST_FACTOR, 50,
-  // Address 25 x39
+  // Address 25
   REPEAT, 6, 0, 10, 0,
   NG6, 20, NF6, 20, NE6, 6, NF6, 6, NE6, 6, ND6, 20, REST, -1,
   
@@ -65,7 +65,7 @@ const PROGMEM uint8_t SONG_1[] = {
 
 /*****************************************************************************************/
 // Song 2: Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri
-const PROGMEM uint8_t SONG_2[] = {
+const uint8_t SONG_2[] PROGMEM = {
   REST_FACTOR, 50,
   LOOP, NGIS5, -1, 4,
   LOOP, NFIS5, -1, 4,
@@ -156,7 +156,7 @@ const PROGMEM uint8_t SONG_2[] = {
 
 /*****************************************************************************************/
 // Song 3: He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)
-const PROGMEM uint8_t SONG_3[] = {
+const uint8_t SONG_3[] PROGMEM = {
   NE5, -1, NG5, -1, NA5, 40, NC5, 20, ND5, 40,
   NE5, -1, NF5, 40, NE5, 20, ND5, 40,
   NE5, -1, NF5, 40, NF5, -1, NG5, 40, ND5, -1, NA5, 60,
@@ -250,7 +250,7 @@ const PROGMEM uint8_t SONG_3[] = {
 
 /*****************************************************************************************/
 // Song 4: Hello World by Alan Walker ft. Torine
-const PROGMEM uint8_t SONG_4[] = {
+const uint8_t SONG_4[] PROGMEM = {
   NAIS5, -4, NC6,   -4, REST,  -4, NCIS6, 8,
   // Address 8
   NAIS5, -4, REST,  -4, NCIS6, -2, NDIS6, -4, REST, -4, NC6,   8,
@@ -323,7 +323,7 @@ const PROGMEM uint8_t SONG_4[] = {
 
 /*****************************************************************************************/
 // Song 5: Catch Me If You Can by Alan Walker ft. Sorana
-const PROGMEM uint8_t SONG_5[] = {
+const uint8_t SONG_5[] PROGMEM = {
   NA5, 35, NAIS5, 35, NG5, 35, NA5, 35,
   
   // Address 8
@@ -376,7 +376,7 @@ const PROGMEM uint8_t SONG_5[] = {
 
 /*****************************************************************************************/
 // Song 6: Lovesick by Alan Walker ft. Sophie Simmons
-const PROGMEM uint8_t SONG_6[] = {
+const uint8_t SONG_6[] PROGMEM = {
   // Address 0
   ND5, -2, NE5, 15, NA5, -2, NC6, 15, NA5, -2, NGIS5, 15, NB5, -2, NA5, 15,
   // Address 16 x24
@@ -430,7 +430,7 @@ const PROGMEM uint8_t SONG_6[] = {
 
 /*****************************************************************************************/
 // Song 7: Unity by Alan Walker ft. The Walkers
-const PROGMEM uint8_t SONG_7[] = {
+const uint8_t SONG_7[] PROGMEM = {
   NB5, 30, NGIS5, 30, NE6, -2, REST, -2, NDIS6, 30, NAIS5, 30,
   
   // Address 12
@@ -461,7 +461,7 @@ const PROGMEM uint8_t SONG_7[] = {
 
 /*****************************************************************************************/
 // Song 8: The Spectre by Alan Walker
-const PROGMEM uint8_t SONG_8[] = {
+const uint8_t SONG_8[] PROGMEM = {
   NE5, -1, NGIS5, -1, NE6,   20, NB5,   -1, NCIS6, -1, NGIS5, 20,
   NE5, -1, NFIS5, -1, NDIS5, 20, NCIS5, -1, NE5,   -1, NCIS5, 20,
   
@@ -550,7 +550,7 @@ const PROGMEM uint8_t SONG_8[] = {
 
 /*****************************************************************************************/
 // Song 9: Alone by Alan Walker ft. Tove Stryrke
-const PROGMEM uint8_t SONG_9[] = {
+const uint8_t SONG_9[] PROGMEM = {
   // Address 0
   NG5, 20, NF5, 20, NDIS5, 20, NAIS4, 20, ND5, 20,
   // Address 10
@@ -624,7 +624,7 @@ const PROGMEM uint8_t SONG_9[] = {
 
 /*****************************************************************************************/
 // Song 10: Creatures by Hot Shade ft. Nomi Bontegard
-const PROGMEM uint8_t SONG_10[] = {
+const uint8_t SONG_10[] PROGMEM = {
   NG6,   -2,
   NFIS6, -4, NG6,   -4, NFIS6, -2,
   NE6,   -4, NFIS6, -4, NE6,   -2,
@@ -672,7 +672,7 @@ const PROGMEM uint8_t SONG_10[] = {
 };
 
 
-const PROGMEM uint8_t * const SONG_BUFFER[] = {
+const uint8_t * const SONG_BUFFER[] PROGMEM = {
   SONG_1,
   SONG_2,
   SONG_3,
@@ -686,7 +686,7 @@ const PROGMEM uint8_t * const SONG_BUFFER[] = {
 };
 
 
-const PROGMEM uint16_t SONG_SIZE[] = {
+const uint16_t SONG_SIZE[] PROGMEM = {
   sizeof(SONG_1),
   sizeof(SONG_2),
   sizeof(SONG_3),
@@ -700,7 +700,7 @@ const PROGMEM uint16_t SONG_SIZE[] = {
 };
 
 
-const PROGMEM uint16_t SONG_TEMPO[] = {
+const uint16_t SONG_TEMPO[] PROGMEM = {
   128,  // Song  1
   90,   // Song  2
   106,  // Song  3
@@ -714,19 +714,19 @@ const PROGMEM uint16_t SONG_TEMPO[] = {
 };
 
 
-const PROGMEM char SONG_1_TITLE [] = { "Pirates of The Carribean by Alan Walker" };
-const PROGMEM char SONG_2_TITLE [] = { "Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri" };
-const PROGMEM char SONG_3_TITLE [] = { "He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)" };
-const PROGMEM char SONG_4_TITLE [] = { "Hello World by Alan Walker ft. Torine" };
-const PROGMEM char SONG_5_TITLE [] = { "Catch Me If You Can by Alan Walker ft. Sorana" };
-const PROGMEM char SONG_6_TITLE [] = { "Lovesick by Alan Walker ft. Sophie Simmons" };
-const PROGMEM char SONG_7_TITLE [] = { "Unity by Alan Walker ft. The Walkers" };
-const PROGMEM char SONG_8_TITLE [] = { "The Spectre by Alan Walker" };
-const PROGMEM char SONG_9_TITLE [] = { "Alone by Alan Walker ft. Tove Stryrke" };
-const PROGMEM char SONG_10_TITLE[] = { "Creatures by Hot Shade ft. Nomi Bontegard" };
+const char SONG_1_TITLE [] PROGMEM = "Pirates of The Carribean by Alan Walker";
+const char SONG_2_TITLE [] PROGMEM = "Ignite by K-391 ft. Alan Walker, Julie Bergan, & Seungri";
+const char SONG_3_TITLE [] PROGMEM = "He's a Pirate - Live performance by D. Garrett (Composed By H. Zimmer & K. Badelt)";
+const char SONG_4_TITLE [] PROGMEM = "Hello World by Alan Walker ft. Torine";
+const char SONG_5_TITLE [] PROGMEM = "Catch Me If You Can by Alan Walker ft. Sorana";
+const char SONG_6_TITLE [] PROGMEM = "Lovesick by Alan Walker ft. Sophie Simmons";
+const char SONG_7_TITLE [] PROGMEM = "Unity by Alan Walker ft. The Walkers";
+const char SONG_8_TITLE [] PROGMEM = "The Spectre by Alan Walker";
+const char SONG_9_TITLE [] PROGMEM = "Alone by Alan Walker ft. Tove Stryrke";
+const char SONG_10_TITLE[] PROGMEM = "Creatures by Hot Shade ft. Nomi Bontegard";
 
 
-const PROGMEM char * const SONG_TITLE[] = {
+const char * const SONG_TITLE[] PROGMEM = {
   SONG_1_TITLE,
   SONG_2_TITLE,
   SONG_3_TITLE,
@@ -740,7 +740,7 @@ const PROGMEM char * const SONG_TITLE[] = {
 };
 
 
-const PROGMEM uint8_t TONE_RANGE[] = {
+const uint8_t TONE_RANGE[] PROGMEM = {
   ND5,   NAIS6,  // Song  1
   NDIS4, NDIS6,  // Song  2
   NA4,   ND6,    // Song  3
