@@ -5,6 +5,9 @@ A library for playing melody in background process using the builtin `tone()` fu
 
 ## Example
 ```c
+// This option only affect on the AVR MCU based board
+#define USE_MODIFIED_TONE_GENERATOR
+
 #include <TonePlayer.h>
 
 const PROGMEM uint8_t SONG[] = {
@@ -15,11 +18,27 @@ const PROGMEM uint8_t SONG[] = {
   REPEAT, 0, 0, 64, 0,
 };
 
+#ifdef ESP32
+#define SPEAKER_PIN                 4
+#elif defined(ESP8266)
+#define SPEAKER_PIN                 16
+//#elif defined(__AVR_ATmega328P__) and defined(USE_MODIFIED_TONE_GENERATOR)
+//      SPEAKER_PIN must be pin     9  (OC1A)
+//#elif defined(__AVR_ATmega2560__) and defined(USE_MODIFIED_TONE_GENERATOR)
+//      SPEAKER_PIN must be pin     11 (OC1A)
+#elif defined(__AVR_ATmega328P__) or defined(__AVR_ATmega2560__)
+#define SPEAKER_PIN                 13
+#endif  // ESP32
+
+#ifdef USE_MODIFIED_TONE_GENERATOR
 TonePlayer top;
-//TonePlayer tp(13);  // This line has same effect with above line.
+#else
+TonePlayer top(SPEAKER_PIN);
+#endif  // USE_MODIFIED_TONE_GENERATOR
 
 void setup() {
-  top.setSong(SONG, sizeof(SONG));  // Set the song data, note: it must be in PROGMEM area.
+  // Set the song data (note: it must be in PROGMEM area) with BPM 169.
+  top.setSong(SONG, sizeof(SONG), 169);
   top.play();  // Begins playback a song.
 }
 
